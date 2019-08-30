@@ -1,0 +1,11 @@
+{
+  "name": "nariman/energia",
+  "description": "energia dropship",
+  "type": "project",
+  "homepage": "https://energia-shop.com/",
+  "config": {
+    "vendor-dir": "./vendor/"
+  },
+  "require": {
+  }
+}
