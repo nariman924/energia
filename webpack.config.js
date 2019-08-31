@@ -2,6 +2,8 @@ const path = require('path');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 module.exports  = {
     entry: {
@@ -31,6 +33,31 @@ module.exports  = {
                     'css-loader',
                     'less-loader'
                 ]
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use: [
+                    'file-loader',
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 65
+                            },
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                            },
+                            gifsicle: {
+                                interlaced: false
+                            },
+                            webp: {
+                                quality: 75
+                            }
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -38,7 +65,14 @@ module.exports  = {
         new MiniCssExtractPlugin({
             filename: "[name].css",
             allChunks: true
-        })
+        }),
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, './frontend/web/images/'),
+                to: path.resolve(__dirname, './frontend/web/images/')
+            }
+        ]),
+        new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i })
     ],
     optimization: {
         minimizer: [
