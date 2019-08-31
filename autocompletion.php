@@ -13,6 +13,7 @@ class Yii extends \yii\BaseYii
     public static $app;
 }
 
+
 /**
  * Class BaseApplication
  * Used for properties that are identical for both WebApplication and ConsoleApplication
