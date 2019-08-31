@@ -6,10 +6,8 @@
 composer.phar
 
 # JS
-node_modules
 spa/npm-debug.log
 spa/yarn-error.log
-
 
 # IDE
 .idea
@@ -33,8 +31,3 @@ phpunit.phar
 
 # Tests
 tests/codeception/*/_support/_generated/*
-
-system/storage/
-image/cache/
-config.php
-admin/config.php
