@@ -80,28 +80,14 @@
     "exclude": ["docs"]
   },
   "scripts": {
+    "post-install-cmd": [
+      "php console/yii app/setup --interactive=0"
+    ],
+    "post-update-cmd": [
+      "php console/yii app/setup --interactive=0"
+    ],
     "build:env": [
       "cp .env.dist .env"
-    ],
-    "build:app": [
-      "@composer install",
-      "echo 'waiting for mysql' && sleep 10",
-      "console/yii app/setup --interactive=0"
-    ],
-    "docker:build": [
-      "@build:env",
-      "@docker:start",
-      "docker-compose exec -T app composer run-script build:app",
-      "docker-compose run -T --rm webpacker npm i npm@latest -g",
-      "docker-compose run -T --rm webpacker npm install",
-      "docker-compose run -T --rm webpacker npm run build",
-      "echo \"All ok!\""
-    ],
-    "docker:start": [
-      "docker-compose up --force-recreate -d"
-    ],
-    "docker:cleanup": [
-      "docker-compose rm -fsv"
     ]
   }
 }
