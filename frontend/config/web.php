@@ -12,6 +12,27 @@ $config = [
         ],
     ],
     'components' => [
+        'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap\BootstrapAsset' => [
+                    'css' => [
+                        Yii::getAlias('@frontendUrl') . '/bootstrap4/bootstrap.min.css'
+                    ],
+                    'js' => [
+                        Yii::getAlias('@frontendUrl') . '/bootstrap4/popper.js',
+                        Yii::getAlias('@frontendUrl') . '/bootstrap4/bootstrap.min.js',
+                    ],
+                ],
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'js'=>[]
+                ],
+                'yii\web\JqueryAsset' => [
+                    'js'=>[
+                        Yii::getAlias('@frontendUrl') . '/js/jquery-3.3.1.min.js'
+                    ]
+                ],
+            ],
+        ],
         'authClientCollection' => [
             'class' => yii\authclient\Collection::class,
             'clients' => [

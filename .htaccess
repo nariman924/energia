@@ -1,3 +1,8 @@
+# One year for image files
+<filesMatch ".(jpg|jpeg|png|gif|ico|css|js|woff2)$">
+Header set Cache-Control "max-age=31536000, public"
+</filesMatch>
+
 Options -Indexes
 IndexIgnore */*
 Options FollowSymlinks

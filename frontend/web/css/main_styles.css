@@ -36,7 +36,7 @@
 1. Fonts
 ***********/
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900|Rubik:300,400,500,700,900');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900|Rubik:300,400,500,700,900&display=auto');
 
 /*********************************
 2. Body and some general stuff
@@ -3527,10 +3527,10 @@ select option
 .footer .logo
 {
 	top: auto;
-	-webkit-transform: transform: none;
-    -moz-transform: transform: none;
-    -ms-transform: transform: none;
-    -o-transform: transform: none;
+	-webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
     transform: none;
 }
 .footer .logo a

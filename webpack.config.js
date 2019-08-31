@@ -8,7 +8,30 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default;
 module.exports  = {
     entry: {
         app: path.resolve(__dirname, './frontend/web/js/app.js'),
-        style: path.resolve(__dirname, './frontend/web/css/style.less'),
+        style: [
+            //path.resolve(__dirname, './frontend/web/css/style.less'),
+            // path.resolve(__dirname, './frontend/web/css/blog_responsive.css'),
+            // path.resolve(__dirname, './frontend/web/css/blog_single_responsive.css'),
+            // path.resolve(__dirname, './frontend/web/css/blog_single_styles.css'),
+            // path.resolve(__dirname, './frontend/web/css/blog_styles.css'),
+            // path.resolve(__dirname, './frontend/web/css/cart_responsive.css'),
+            // path.resolve(__dirname, './frontend/web/css/cart_styles.css'),
+            // path.resolve(__dirname, './frontend/web/css/contact_responsive.css'),
+            // path.resolve(__dirname, './frontend/web/css/contact_styles.css'),
+            path.resolve(__dirname, './frontend/web/css/main_styles.css'),
+            // path.resolve(__dirname, './frontend/web/css/product_responsive.css'),
+            // path.resolve(__dirname, './frontend/web/css/product_styles.css'),
+            // path.resolve(__dirname, './frontend/web/css/regular_responsive.css'),
+            // path.resolve(__dirname, './frontend/web/css/regular_styles.css'),
+            path.resolve(__dirname, './frontend/web/css/responsive.css'),
+            // path.resolve(__dirname, './frontend/web/css/shop_responsive.css'),
+            // path.resolve(__dirname, './frontend/web/css/shop_styles.css'),
+            path.resolve(__dirname, './frontend/web/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css'),
+            path.resolve(__dirname, './frontend/web/plugins/OwlCarousel2-2.2.1/owl.carousel.css'),
+            path.resolve(__dirname, './frontend/web/plugins/OwlCarousel2-2.2.1/owl.theme.default.css'),
+            path.resolve(__dirname, './frontend/web/plugins/OwlCarousel2-2.2.1/animate.css'),
+            path.resolve(__dirname, './frontend/web/plugins/slick-1.8.0/slick.css'),
+        ]
     },
     output: {
         filename: '[name].js',
@@ -27,38 +50,32 @@ module.exports  = {
                 ]
             },
             {
-                test: /\.less$/,
+                test: /glyphicons-halflings-regular\.(woff2|woff|svg|ttf|eot)$/,
+                loader:require.resolve("url-loader") + "?name=../[path][name].[ext]"
+            },
+            {
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: "url-loader?limit=10000&mimetype=application/font-woff"
+            },
+            {
+                test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: "file-loader"
+            },
+            {
+                test: /\.(css)$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                ]
+            },
+            {
+                test: /\.(less)$/,
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'less-loader'
                 ]
             },
-            {
-                test: /\.(gif|png|jpe?g|svg)$/i,
-                use: [
-                    'file-loader',
-                    {
-                        loader: 'image-webpack-loader',
-                        options: {
-                            mozjpeg: {
-                                progressive: true,
-                                quality: 65
-                            },
-                            pngquant: {
-                                quality: '65-90',
-                                speed: 4
-                            },
-                            gifsicle: {
-                                interlaced: false
-                            },
-                            webp: {
-                                quality: 75
-                            }
-                        }
-                    }
-                ]
-            }
         ]
     },
     plugins: [
