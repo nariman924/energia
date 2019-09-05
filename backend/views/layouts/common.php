@@ -150,6 +150,28 @@ Yii::info(Yii::$app->components["i18n"]["translations"]['*']['class'], 'test');
                         'badgeBgClass' => 'label-success',
                     ],
                     [
+                        'label' => 'Магазин',
+                        'options' => ['class' => 'header'],
+                    ],
+                    [
+                        'label' => 'Категории',
+                        'url' => ['/categories/index'],
+                        'icon' => '<i class="fa fa-tags"></i>',
+                        'active' => Yii::$app->controller->id === 'categories',
+                    ],
+                    [
+                        'label' => 'Товары',
+                        'url' => ['/offers/index'],
+                        'icon' => '<i class="fa fa-shopping-cart"></i>',
+                        'active' => Yii::$app->controller->id === 'offers',
+                    ],
+                    [
+                        'label' => 'Заказы',
+                        'url' => ['/orders/index'],
+                        'icon' => '<i class="fa fa-cart-arrow-down "></i>',
+                        'active' => Yii::$app->controller->id === 'orders',
+                    ],
+                    [
                         'label' => Yii::t('backend', 'Users'),
                         'icon' => '<i class="fa fa-users"></i>',
                         'url' => ['/user/index'],

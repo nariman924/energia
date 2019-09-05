@@ -955,7 +955,7 @@ select option
 	width: auto;
 	height: 46px;
 	border-bottom: solid 1px #f2f2f2;
-	padding-left: 35px;
+	padding-left: 20px;
 	padding-right: 30px;
 	white-space: nowrap;
 }
@@ -967,7 +967,7 @@ select option
 {
 	display: block;
 	position: relative;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 300;
 	color: #000000;
 	line-height: 46px;
@@ -991,7 +991,7 @@ select option
 	-ms-transform: translateY(-50%);
 	-o-transform: translateY(-50%);
 	transform: translateY(-50%);
-	right: 0;
+	right: -15px;
 	font-size: 12px;
 }
 .cat_menu li ul

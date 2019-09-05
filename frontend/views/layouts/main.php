@@ -1,4 +1,28 @@
-<?php $this->beginContent('@frontend/views/layouts/base.php') ?>
+<?php
+use common\models\ECategories;
+use yii\helpers\StringHelper;
+use yii\helpers\Url;
+
+$topCat = ECategories::find()->getList();
+
+function drawMenuItems($category)
+{
+    $childs = ECategories::find()->getList($category['shop_id']);
+
+    if ($childs) {
+        echo '<li class="hassubs"><a href="/#">' . $category['name'] .
+            '<i class="fas fa-chevron-right ml-auto"></i></a><ul style="width: inherit!important;">';
+
+        foreach ($childs as $item) {
+            drawMenuItems($item);
+        }
+        echo '</ul></li>';
+    } else {
+        echo '<li><a href="/#">' . $category['name'] . '<i class="fas fa-chevron-right ml-auto"></i></a></li>';
+    }
+}
+
+$this->beginContent('@frontend/views/layouts/base.php') ?>
 
 <div class="super_container">
 
@@ -12,33 +36,21 @@
             <div class="container">
                 <div class="row">
                     <div class="col d-flex flex-row">
-                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/images/phone.png" alt=""></div>+38 068 005 3570</div>
-                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/images/mail.png" alt=""></div><a href="/mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                        <div class="top_bar_contact_item"><div class="top_bar_icon">
+                                <img src="/images/phone.png" alt=""></div>
+                            <?= Yii::$app->keyStorage->get('phone'); ?>
+                        </div>
+                        <div class="top_bar_contact_item">
+                            <div class="top_bar_icon"><img src="/images/mail.png" alt=""></div>
+                            <a href="/mailto:<?= Yii::$app->keyStorage->get('email'); ?>">
+                                <?= Yii::$app->keyStorage->get('email'); ?>
+                            </a>
+                        </div>
                         <div class="top_bar_content ml-auto">
-                            <div class="top_bar_menu">
-                                <ul class="standard_dropdown top_bar_dropdown">
-                                    <li>
-                                        <a href="/#">English<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="/#">Italian</a></li>
-                                            <li><a href="/#">Spanish</a></li>
-                                            <li><a href="/#">Japanese</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="/#">$ US dollar<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="/#">EUR Euro</a></li>
-                                            <li><a href="/#">GBP British Pound</a></li>
-                                            <li><a href="/#">JPY Japanese Yen</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
                             <div class="top_bar_user">
                                 <div class="user_icon"><img src="/images/user.svg" alt=""></div>
-                                <div><a href="/#">Register</a></div>
-                                <div><a href="/#">Sign in</a></div>
+                                <div><a href="<?= Url::toRoute('/user/sign-in/signup') ?>">Регистрация</a></div>
+                                <div><a href="<?= Url::toRoute('/user/sign-in/login') ?>">Вход</a></div>
                             </div>
                         </div>
                     </div>
@@ -51,32 +63,30 @@
         <div class="header_main">
             <div class="container">
                 <div class="row">
-
-                    <!-- Logo -->
                     <div class="col-lg-2 col-sm-3 col-3 order-1">
                         <div class="logo_container">
-                            <div class="logo"><a href="/#">OneTech</a></div>
+                            <div class="logo"><a href="<?= Yii::$app->homeUrl ?>">Энергия</a></div>
                         </div>
                     </div>
-
                     <!-- Search -->
                     <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
                         <div class="header_search">
                             <div class="header_search_content">
                                 <div class="header_search_form_container">
                                     <form action="#" class="header_search_form clearfix">
-                                        <input type="search" required="required" class="header_search_input" placeholder="Search for products...">
+                                        <input type="search" required="required" class="header_search_input" placeholder="Найти продукт...">
                                         <div class="custom_dropdown">
                                             <div class="custom_dropdown_list">
-                                                <span class="custom_dropdown_placeholder clc">All Categories</span>
+                                                <span class="custom_dropdown_placeholder clc">Все категории</span>
                                                 <i class="fas fa-chevron-down"></i>
                                                 <ul class="custom_list clc">
-                                                    <li><a class="clc" href="/#">All Categories</a></li>
-                                                    <li><a class="clc" href="/#">Computers</a></li>
-                                                    <li><a class="clc" href="/#">Laptops</a></li>
-                                                    <li><a class="clc" href="/#">Cameras</a></li>
-                                                    <li><a class="clc" href="/#">Hardware</a></li>
-                                                    <li><a class="clc" href="/#">Smartphones</a></li>
+                                                    <?php foreach ($topCat as $item) { ?>
+                                                        <li>
+                                                            <a data-toggle="tooltip" title="<?= $item['name'] ?>" class="clc" href="/#">
+                                                                <?= StringHelper::truncate($item['name'],14,'...') ?>
+                                                            </a>
+                                                        </li>
+                                                    <?php } ?>
                                                 </ul>
                                             </div>
                                         </div>
@@ -93,7 +103,7 @@
                             <div class="wishlist d-flex flex-row align-items-center justify-content-end">
                                 <div class="wishlist_icon"><img src="/images/heart.png" alt=""></div>
                                 <div class="wishlist_content">
-                                    <div class="wishlist_text"><a href="/#">Wishlist</a></div>
+                                    <div class="wishlist_text"><a href="/#">Избранное</a></div>
                                     <div class="wishlist_count">115</div>
                                 </div>
                             </div>
@@ -106,7 +116,7 @@
                                         <div class="cart_count"><span>10</span></div>
                                     </div>
                                     <div class="cart_content">
-                                        <div class="cart_text"><a href="/#">Cart</a></div>
+                                        <div class="cart_text"><a href="/#">Корзина</a></div>
                                         <div class="cart_price">$85</div>
                                     </div>
                                 </div>
@@ -131,35 +141,13 @@
                             <div class="cat_menu_container">
                                 <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
                                     <div class="cat_burger"><span></span><span></span><span></span></div>
-                                    <div class="cat_menu_text">categories</div>
+                                    <div class="cat_menu_text">категории</div>
                                 </div>
 
                                 <ul class="cat_menu">
-                                    <li><a href="/#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-                                    <li><a href="/#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-                                    <li class="hassubs">
-                                        <a href="/#">Hardware<i class="fas fa-chevron-right"></i></a>
-                                        <ul>
-                                            <li class="hassubs">
-                                                <a href="/#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                                <ul>
-                                                    <li><a href="/#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                    <li><a href="/#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                    <li><a href="/#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                    <li><a href="/#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="/#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="/#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="/#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="/#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="/#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="/#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="/#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="/#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="/#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+                                    <?php foreach ($topCat as $item) {
+                                        drawMenuItems($item);
+                                    }?>
                                 </ul>
                             </div>
 
@@ -167,7 +155,7 @@
 
                             <div class="main_nav_menu ml-auto">
                                 <ul class="standard_dropdown main_nav_dropdown">
-                                    <li><a href="/#">Home<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="/#">Главная<i class="fas fa-chevron-down"></i></a></li>
                                     <li class="hassubs">
                                         <a href="/#">Super Deals<i class="fas fa-chevron-down"></i></a>
                                         <ul>

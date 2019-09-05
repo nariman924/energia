@@ -31,4 +31,12 @@ class ECategoriesQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function getList($parentId = null)
+    {
+        return $this->select(['name', 'id', 'shop_id'])
+            ->where(['shop_parent_id' => $parentId])
+            ->asArray()
+            ->all();
+    }
 }
