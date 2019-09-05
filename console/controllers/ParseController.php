@@ -53,6 +53,19 @@ class ParseController extends Controller
         $pic->load();
     }
 
+    public function actionAll()
+    {
+        $cat = new CategoriesLoader(self::$xml);
+
+        if ($cat->load()) {
+            $off = new OffersLoader(self::$xml);
+            if ($off->load()) {
+                $pic = new PicturesLoader(self::$xml);
+                $pic->load();
+            }
+        }
+    }
+
     /**
      * Запись текущего времени
      * @return int
