@@ -8,7 +8,7 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default;
 module.exports  = {
     entry: {
         app: path.resolve(__dirname, './frontend/web/js/app.js'),
-        style: [
+        home: [
             //path.resolve(__dirname, './frontend/web/css/style.less'),
             // path.resolve(__dirname, './frontend/web/css/blog_responsive.css'),
             // path.resolve(__dirname, './frontend/web/css/blog_single_responsive.css'),
@@ -18,7 +18,7 @@ module.exports  = {
             // path.resolve(__dirname, './frontend/web/css/cart_styles.css'),
             // path.resolve(__dirname, './frontend/web/css/contact_responsive.css'),
             // path.resolve(__dirname, './frontend/web/css/contact_styles.css'),
-            path.resolve(__dirname, './vendor/npm-asset/font-awesome/css/font-awesome.min.css'),
+            // path.resolve(__dirname, './vendor/npm-asset/font-awesome/css/font-awesome.min.css'),
             path.resolve(__dirname, './frontend/web/css/main_styles.css'),
             // path.resolve(__dirname, './frontend/web/css/product_responsive.css'),
             // path.resolve(__dirname, './frontend/web/css/product_styles.css'),

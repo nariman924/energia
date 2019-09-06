@@ -3,7 +3,7 @@ use yii\helpers\Html;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-//\frontend\assets\FrontendAsset::register($this);
+\frontend\assets\FrontendAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -14,7 +14,6 @@ use yii\helpers\Html;
     <title><?php echo Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <?php echo Html::csrfMetaTags() ?>
-    <link rel="stylesheet" type="text/css" href="/bundle/style.css">
 </head>
 <body>
 <?php $this->beginBody() ?>
