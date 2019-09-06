@@ -63,9 +63,8 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
     <?php echo $content ?>
 
 </div>
-
+    <?php /*
     <!-- Newsletter -->
-
     <div class="newsletter">
         <div class="container">
             <div class="row">
@@ -88,7 +87,7 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
             </div>
         </div>
     </div>
-
+    */ ?>
     <!-- Footer -->
 
     <footer class="footer">
@@ -108,11 +107,11 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                         </div>
                         <div class="footer_social">
                             <ul>
-                                <li><a href="/#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="/#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="/#"><i class="fab fa-youtube"></i></a></li>
-                                <li><a href="/#"><i class="fab fa-google"></i></a></li>
-                                <li><a href="/#"><i class="fab fa-vimeo-v"></i></a></li>
+                                <li><a href="/#"><i class="fa fa-facebook-f"></i></a></li>
+                                <li><a href="/#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="/#"><i class="fa fa-youtube"></i></a></li>
+                                <li><a href="/#"><i class="fa fa-google"></i></a></li>
+                                <li><a href="/#"><i class="fa fa-vimeo-v"></i></a></li>
                             </ul>
                         </div>
                     </div>

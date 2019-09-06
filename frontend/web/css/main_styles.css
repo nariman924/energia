@@ -1266,8 +1266,8 @@ select option
 .banner_product_image
 {
 	position: absolute;
-	top: -5px;
-	right: -52px;
+	top: 158px;
+	right: 28px;
 	z-index: 0;
 }
 
@@ -2206,8 +2206,7 @@ select option
 .new_arrivals
 {
 	width: 100%;
-	padding-top: 96px;
-	padding-bottom: 96px;
+	padding-bottom: 20px;
 }
 .new_arrivals_title
 {
