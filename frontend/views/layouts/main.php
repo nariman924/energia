@@ -396,175 +396,6 @@ $this->beginContent('@frontend/views/layouts/base.php') ?>
                     <!-- Product Panel -->
                     <div class="product_panel panel active">
                         <div class="arrivals_slider slider">
-
-                            <!-- Slider Item -->
-                            <div class="arrivals_slider_item">
-                                <div class="border_active"></div>
-                                <div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="/images/new_1.jpg" alt=""></div>
-                                    <div class="product_content">
-                                        <div class="product_price">$225</div>
-                                        <div class="product_name"><div><a href="/product.html">Astro M2 Black</a></div></div>
-                                        <div class="product_extras">
-
-                                            <button class="product_cart_button">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                    <ul class="product_marks">
-                                        <li class="product_mark product_discount">-25%</li>
-                                        <li class="product_mark product_new">new</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Slider Item -->
-                            <div class="arrivals_slider_item">
-                                <div class="border_active"></div>
-                                <div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="/images/new_2.jpg" alt=""></div>
-                                    <div class="product_content">
-                                        <div class="product_price">$379</div>
-                                        <div class="product_name"><div><a href="/product.html">Transcend T.Sonic</a></div></div>
-                                        <div class="product_extras">
-
-                                            <button class="product_cart_button active">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                    <ul class="product_marks">
-                                        <li class="product_mark product_discount"></li>
-                                        <li class="product_mark product_new">new</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Slider Item -->
-                            <div class="arrivals_slider_item">
-                                <div class="border_active"></div>
-                                <div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="/images/new_3.jpg" alt=""></div>
-                                    <div class="product_content">
-                                        <div class="product_price">$379</div>
-                                        <div class="product_name"><div><a href="/product.html">Xiaomi Band 2...</a></div></div>
-                                        <div class="product_extras">
-
-                                            <button class="product_cart_button">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                    <ul class="product_marks">
-                                        <li class="product_mark product_discount"></li>
-                                        <li class="product_mark product_new">new</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Slider Item -->
-                            <div class="arrivals_slider_item">
-                                <div class="border_active"></div>
-                                <div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="/images/new_4.jpg" alt=""></div>
-                                    <div class="product_content">
-                                        <div class="product_price">$225</div>
-                                        <div class="product_name"><div><a href="/product.html">Rapoo T8 White</a></div></div>
-                                        <div class="product_extras">
-
-                                            <button class="product_cart_button">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                    <ul class="product_marks">
-                                        <li class="product_mark product_discount"></li>
-                                        <li class="product_mark product_new">new</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Slider Item -->
-                            <div class="arrivals_slider_item">
-                                <div class="border_active"></div>
-                                <div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="/images/new_5.jpg" alt=""></div>
-                                    <div class="product_content">
-                                        <div class="product_price">$225</div>
-                                        <div class="product_name"><div><a href="/product.html">Philips BT6900A</a></div></div>
-                                        <div class="product_extras">
-
-                                            <button class="product_cart_button">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                    <ul class="product_marks">
-                                        <li class="product_mark product_discount"></li>
-                                        <li class="product_mark product_new">new</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Slider Item -->
-                            <div class="arrivals_slider_item">
-                                <div class="border_active"></div>
-                                <div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="/images/new_6.jpg" alt=""></div>
-                                    <div class="product_content">
-                                        <div class="product_price">$379</div>
-                                        <div class="product_name"><div><a href="/product.html">Nokia 3310(2017)...</a></div></div>
-                                        <div class="product_extras">
-
-                                            <button class="product_cart_button">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                    <ul class="product_marks">
-                                        <li class="product_mark product_discount"></li>
-                                        <li class="product_mark product_new">new</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Slider Item -->
-                            <div class="arrivals_slider_item">
-                                <div class="border_active"></div>
-                                <div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="/images/new_7.jpg" alt=""></div>
-                                    <div class="product_content">
-                                        <div class="product_price">$379</div>
-                                        <div class="product_name"><div><a href="/product.html">Rapoo 7100p Gray</a></div></div>
-                                        <div class="product_extras">
-
-                                            <button class="product_cart_button">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                    <ul class="product_marks">
-                                        <li class="product_mark product_discount">-25%</li>
-                                        <li class="product_mark product_new">new</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Slider Item -->
-                            <div class="arrivals_slider_item">
-                                <div class="border_active"></div>
-                                <div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="/images/new_8.jpg" alt=""></div>
-                                    <div class="product_content">
-                                        <div class="product_price">$225</div>
-                                        <div class="product_name"><div><a href="/product.html">Canon EF</a></div></div>
-                                        <div class="product_extras">
-
-                                            <button class="product_cart_button">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                    <ul class="product_marks">
-                                        <li class="product_mark product_discount"></li>
-                                        <li class="product_mark product_new">new</li>
-                                    </ul>
-                                </div>
-                            </div>
-
                             <!-- Slider Item -->
                             <div class="arrivals_slider_item">
                                 <div class="border_active"></div>
@@ -657,6 +488,48 @@ $this->beginContent('@frontend/views/layouts/base.php') ?>
                                     <div class="product_content">
                                         <div class="product_price">$225</div>
                                         <div class="product_name"><div><a href="/product.html">Huawei MediaPad...</a></div></div>
+                                        <div class="product_extras">
+
+                                            <button class="product_cart_button">Add to Cart</button>
+                                        </div>
+                                    </div>
+                                    <div class="product_fav"><i class="fa fa-heart"></i></div>
+                                    <ul class="product_marks">
+                                        <li class="product_mark product_discount"></li>
+                                        <li class="product_mark product_new">new</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Slider Item -->
+                            <div class="arrivals_slider_item">
+                                <div class="border_active"></div>
+                                <div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
+                                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="/images/new_1.jpg" alt=""></div>
+                                    <div class="product_content">
+                                        <div class="product_price">$225</div>
+                                        <div class="product_name"><div><a href="/product.html">Gembird SPK-103</a></div></div>
+                                        <div class="product_extras">
+
+                                            <button class="product_cart_button">Add to Cart</button>
+                                        </div>
+                                    </div>
+                                    <div class="product_fav"><i class="fa fa-heart"></i></div>
+                                    <ul class="product_marks">
+                                        <li class="product_mark product_discount"></li>
+                                        <li class="product_mark product_new">new</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Slider Item -->
+                            <div class="arrivals_slider_item">
+                                <div class="border_active"></div>
+                                <div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
+                                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="/images/new_2.jpg" alt=""></div>
+                                    <div class="product_content">
+                                        <div class="product_price">$379</div>
+                                        <div class="product_name"><div><a href="/product.html">Canon IXUS 175...</a></div></div>
                                         <div class="product_extras">
 
                                             <button class="product_cart_button">Add to Cart</button>
@@ -821,121 +694,6 @@ $this->beginContent('@frontend/views/layouts/base.php') ?>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Reviews -->
-
-    <div class="reviews">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-
-                    <div class="reviews_title_container">
-                        <h3 class="reviews_title">Отзывы</h3>
-                        <div class="reviews_all ml-auto"><a href="/#">показать все <span>отзывы</span></a></div>
-                    </div>
-
-                    <div class="reviews_slider_container">
-
-                        <!-- Reviews Slider -->
-                        <div class="owl-carousel owl-theme reviews_slider">
-
-                            <!-- Reviews Slider Item -->
-                            <div class="owl-item">
-                                <div class="review d-flex flex-row align-items-start justify-content-start">
-                                    <div><div class="review_image"><img src="/images/review_1.jpg" alt=""></div></div>
-                                    <div class="review_content">
-                                        <div class="review_name">Roberto Sanchez</div>
-                                        <div class="review_rating_container">
-                                            <div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                            <div class="review_time">2 day ago</div>
-                                        </div>
-                                        <div class="review_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</p></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Reviews Slider Item -->
-                            <div class="owl-item">
-                                <div class="review d-flex flex-row align-items-start justify-content-start">
-                                    <div><div class="review_image"><img src="/images/review_2.jpg" alt=""></div></div>
-                                    <div class="review_content">
-                                        <div class="review_name">Brandon Flowers</div>
-                                        <div class="review_rating_container">
-                                            <div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                            <div class="review_time">2 day ago</div>
-                                        </div>
-                                        <div class="review_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</p></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Reviews Slider Item -->
-                            <div class="owl-item">
-                                <div class="review d-flex flex-row align-items-start justify-content-start">
-                                    <div><div class="review_image"><img src="/images/review_3.jpg" alt=""></div></div>
-                                    <div class="review_content">
-                                        <div class="review_name">Emilia Clarke</div>
-                                        <div class="review_rating_container">
-                                            <div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                            <div class="review_time">2 day ago</div>
-                                        </div>
-                                        <div class="review_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</p></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Reviews Slider Item -->
-                            <div class="owl-item">
-                                <div class="review d-flex flex-row align-items-start justify-content-start">
-                                    <div><div class="review_image"><img src="/images/review_1.jpg" alt=""></div></div>
-                                    <div class="review_content">
-                                        <div class="review_name">Roberto Sanchez</div>
-                                        <div class="review_rating_container">
-                                            <div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                            <div class="review_time">2 day ago</div>
-                                        </div>
-                                        <div class="review_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</p></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Reviews Slider Item -->
-                            <div class="owl-item">
-                                <div class="review d-flex flex-row align-items-start justify-content-start">
-                                    <div><div class="review_image"><img src="/images/review_2.jpg" alt=""></div></div>
-                                    <div class="review_content">
-                                        <div class="review_name">Brandon Flowers</div>
-                                        <div class="review_rating_container">
-                                            <div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                            <div class="review_time">2 day ago</div>
-                                        </div>
-                                        <div class="review_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</p></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Reviews Slider Item -->
-                            <div class="owl-item">
-                                <div class="review d-flex flex-row align-items-start justify-content-start">
-                                    <div><div class="review_image"><img src="/images/review_3.jpg" alt=""></div></div>
-                                    <div class="review_content">
-                                        <div class="review_name">Emilia Clarke</div>
-                                        <div class="review_rating_container">
-                                            <div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                            <div class="review_time">2 day ago</div>
-                                        </div>
-                                        <div class="review_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</p></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="reviews_dots"></div>
                     </div>
                 </div>
             </div>
