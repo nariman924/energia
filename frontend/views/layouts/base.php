@@ -2,8 +2,10 @@
 
 /* @var $this \yii\web\View */
 /* @var $content string */
+use yii\helpers\Url;
 
-$this->beginContent('@frontend/views/layouts/_clear.php')
+$this->beginContent('@frontend/views/layouts/_clear.php');
+
 ?>
 <div class="wrap">
     <?php echo $content ?>
@@ -29,12 +31,12 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                         <div class="footer_title">Меню</div>
                         <ul class="footer_list">
                             <li><a href="<?= Yii::$app->homeUrl ?>">Главная</a></li>
-                            <li><a href="/#">Каталог</a></li>
-                            <li><a href="/#">Доставка</a></li>
-                            <li><a href="/#">Гарантия</a></li>
-                            <li><a href="/#">О нас</a></li>
-                            <li><a href="/blog.html">Статьи</a></li>
-                            <li><a href="/contact.html">Контакты</a></li>
+                            <li><a href="<?= Url::toRoute('/catalog') ?>">Каталог</a></li>
+                            <li><a href="<?= Url::toRoute('/page/delivery') ?>">Доставка</a></li>
+                            <li><a href="<?= Url::toRoute('/page/warranty') ?>">Гарантия</a></li>
+                            <li><a href="<?= Url::toRoute('/page/about') ?>">О нас</a></li>
+                            <li><a href="<?= Url::toRoute('/article') ?>">Статьи</a></li>
+                            <li><a href="<?= Url::toRoute('/site/contact') ?>">Контакты</a></li>
                         </ul>
                     </div>
                 </div>

@@ -4,6 +4,8 @@
  */
 
 // In the console environment, some path aliases may not exist. Please define these:
+use frontend\assets\CartAsset;
+use frontend\assets\CatalogAsset;
 use frontend\assets\ContactAsset;
 use frontend\assets\FrontendAsset;
 use frontend\assets\BaseAsset;
@@ -33,6 +35,8 @@ return [
         ProductAsset::class,
         ContactAsset::class,
         PageAsset::class,
+        CatalogAsset::class,
+        CartAsset::class,
     ],
     'targets' => [
         'base' => [
@@ -83,6 +87,26 @@ return [
             'css' => 'page-{hash}.css',
             'depends' => [
                 PageAsset::class
+            ],
+        ],
+        'catalog' => [
+            'class' => 'yii\web\AssetBundle',
+            'basePath' => '@webroot/static',
+            'baseUrl' => '@web/static',
+            'js' => 'catalog-{hash}.js',
+            'css' => 'catalog-{hash}.css',
+            'depends' => [
+                CatalogAsset::class
+            ],
+        ],
+        'cart' => [
+            'class' => 'yii\web\AssetBundle',
+            'basePath' => '@webroot/static',
+            'baseUrl' => '@web/static',
+            'js' => 'cart-{hash}.js',
+            'css' => 'cart-{hash}.css',
+            'depends' => [
+                CartAsset::class
             ],
         ],
     ],

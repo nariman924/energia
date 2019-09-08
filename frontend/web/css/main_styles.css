@@ -2391,10 +2391,12 @@ select option
 .arrivals_single_name_container
 {
 	width: 100%;
+	min-height: 100px;
 }
 .arrivals_single_name
 {
 	margin-top: 2px;
+	margin-bottom: 20px;
 	float: left;
 }
 .arrivals_single_name a
@@ -2416,10 +2418,6 @@ select option
 	font-size: 16px;
 	font-weight: 500;
 	float: right;
-}
-.arrivals_single_rating
-{
-	margin-top: 9px;
 }
 .arrivals_single_marks 
 {

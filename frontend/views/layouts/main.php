@@ -85,6 +85,7 @@ $this->beginContent('@frontend/views/layouts/base.php'); ?>
                     <!-- Wishlist -->
                     <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
                         <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+                            <?php /*
                             <div class="wishlist d-flex flex-row align-items-center justify-content-end">
                                 <div class="wishlist_icon"><img src="/images/heart.png" alt=""></div>
                                 <div class="wishlist_content">
@@ -92,7 +93,7 @@ $this->beginContent('@frontend/views/layouts/base.php'); ?>
                                     <div class="wishlist_count">115</div>
                                 </div>
                             </div>
-
+                            */ ?>
                             <!-- Cart -->
                             <div class="cart">
                                 <div class="cart_container d-flex flex-row align-items-center justify-content-end">
@@ -141,11 +142,11 @@ $this->beginContent('@frontend/views/layouts/base.php'); ?>
                             <div class="main_nav_menu ml-auto">
                                 <ul class="standard_dropdown main_nav_dropdown">
                                     <li><a href="<?= Yii::$app->homeUrl ?>">Главная<i class="fa fa-chevron-down"></i></a></li>
-                                    <li><a href="/#">Каталог<i class="fa fa-chevron-down"></i></a></li>
-                                    <li><a href="/#">Доставка<i class="fa fa-chevron-down"></i></a></li>
-                                    <li><a href="/#">Гарантия<i class="fa fa-chevron-down"></i></a></li>
-                                    <li><a href="/#">О нас<i class="fa fa-chevron-down"></i></a></li>
-                                    <li><a href="/blog.html">Статьи<i class="fa fa-chevron-down"></i></a></li>
+                                    <li><a href="<?= Url::toRoute('/catalog') ?>">Каталог<i class="fa fa-chevron-down"></i></a></li>
+                                    <li><a href="<?= Url::toRoute('/page/delivery') ?>">Доставка<i class="fa fa-chevron-down"></i></a></li>
+                                    <li><a href="<?= Url::toRoute('/page/warranty') ?>">Гарантия<i class="fa fa-chevron-down"></i></a></li>
+                                    <li><a href="<?= Url::toRoute('/page/about') ?>">О нас<i class="fa fa-chevron-down"></i></a></li>
+                                    <li><a href="<?= Url::toRoute('/article') ?>">Статьи<i class="fa fa-chevron-down"></i></a></li>
                                     <li><a href="<?= Url::toRoute('/site/contact') ?>">Контакты<i class="fa fa-chevron-down"></i></a></li>
                                 </ul>
                             </div>
@@ -186,16 +187,19 @@ $this->beginContent('@frontend/views/layouts/base.php'); ?>
                                     <a href="<?= Yii::$app->homeUrl ?>">Главная<i class="fa fa-angle-down"></i></a>
                                 </li>
                                 <li class="page_menu_item">
-                                    <a href="<?= Yii::$app->homeUrl ?>">Каталог<i class="fa fa-angle-down"></i></a>
+                                    <a href="<?= Url::toRoute('/catalog') ?>">Каталог<i class="fa fa-angle-down"></i></a>
                                 </li>
                                 <li class="page_menu_item">
-                                    <a href="<?= Yii::$app->homeUrl ?>">Доставка<i class="fa fa-angle-down"></i></a>
+                                    <a href="<?= Url::toRoute('/page/delivery') ?>">Доставка<i class="fa fa-angle-down"></i></a>
                                 </li>
                                 <li class="page_menu_item">
-                                    <a href="<?= Yii::$app->homeUrl ?>">Гарантия<i class="fa fa-angle-down"></i></a>
+                                    <a href="<?= Url::toRoute('/page/warranty') ?>">Гарантия<i class="fa fa-angle-down"></i></a>
                                 </li>
                                 <li class="page_menu_item">
-                                    <a href="<?= Yii::$app->homeUrl ?>">О нас<i class="fa fa-angle-down"></i></a>
+                                    <a href="<?= Url::toRoute('/page/about') ?>">О нас<i class="fa fa-angle-down"></i></a>
+                                </li>
+                                <li class="page_menu_item">
+                                    <a href="<?= Url::toRoute('/article') ?>">О нас<i class="fa fa-angle-down"></i></a>
                                 </li>
                                 <li class="page_menu_item">
                                     <a href="<?= Url::toRoute('/site/contact') ?>">Контакты<i class="fa fa-angle-down"></i></a>

@@ -16,7 +16,7 @@ use yii\web\NotFoundHttpException;
 
 class CatalogController extends Controller
 {
-    public function actionIndex($slug)
+    public function actionIndex()
     {
         return $this->render('index');
     }

@@ -95,34 +95,50 @@ $latest = array_chunk($latest, 4);
 
 <div class="new_arrivals">
     <div class="container">
-                <h3 class="reviews_title">Новинки</h3>
-                <!-- Product Panel -->
-                    <?php foreach ($latest as $latestArr) { ?>
-                        <div class="row">
-                        <?php foreach ($latestArr as $latestItem) { ?>
-                            <div class="col-lg-3 mb-5">
-                                <div class="arrivals_single_image">
-                                    <img src="<?= Yii::$app->fileStorage->baseUrl . '/' . $latestItem->anons_pic ?>" alt="<?= $latestItem->name ?>">
-                                </div>
-                                <div class="arrivals_single_content">
-                                    <div class="arrivals_single_category"><a href="#">Smartphones</a></div>
-                                    <div style="min-height: 100px" class="arrivals_single_name_container clearfix">
-                                        <div class="arrivals_single_name">
-                                            <a href="<?= Url::toRoute(['catalog/product', 'id' => $latestItem->id]) ?>"><?= $latestItem->name ?></a>
-                                        </div>
-                                        <div class="arrivals_single_price text-right"><?= $latestItem->price ?> р.</div>
-                                    </div>
-                                    <div class="rating_r rating_r_4 arrivals_single_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                    <form action="#"><button class="arrivals_single_button">В корзину</button></form>
-                                </div>
-                                <div class="arrivals_single_fav product_fav active"><i class="fas fa-heart"></i></div>
-                                <ul class="arrivals_single_marks product_marks">
-                                    <li class="arrivals_single_mark product_mark product_new">new</li>
-                                </ul>
-                            </div>
-                        <?php } ?>
+        <h3 class="reviews_title">Новинки</h3>
+        <!-- Product Panel -->
+            <?php foreach ($latest as $latestArr) { ?>
+                <div class="row">
+                <?php foreach ($latestArr as $latestItem) { ?>
+                    <div class="col-lg-3 mb-5">
+                        <div class="arrivals_single_image">
+                            <img src="<?= Yii::$app->fileStorage->baseUrl . '/' . $latestItem->anons_pic ?>" alt="<?= $latestItem->name ?>">
                         </div>
-                    <?php } ?>
+                        <div class="arrivals_single_content">
+                            <div class="arrivals_single_category"><a href="#">
+                                    <?= $latestItem->getECategories()
+                                        ->select('name')
+                                        ->limit(1)
+                                        ->scalar()
+                                    ?></a></div>
+                            <div class="arrivals_single_name_container clearfix">
+                                <div class="arrivals_single_name">
+                                    <a href="<?= Url::toRoute(['catalog/product', 'id' => $latestItem->id]) ?>">
+                                        <?= $latestItem->name ?>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="rating_r rating_r_5 arrivals_single_rating">
+                                        <i></i><i></i><i></i><i></i><i></i>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="arrivals_single_price text-right"><?= $latestItem->price ?> р.</div>
+                                </div>
+                            </div>
+                            <div class="button d-block mt-2 text-center">
+                                <a href="<?= Url::toRoute(['catalog/product', 'id' => $latestItem->id]) ?>">Подробнее..</a>
+                            </div>
+                        </div>
+                        <ul class="arrivals_single_marks product_marks">
+                            <li class="arrivals_single_mark product_mark product_new">new</li>
+                        </ul>
+                    </div>
+                <?php } ?>
+                </div>
+            <?php } ?>
     </div>
 </div>
 
@@ -229,122 +245,6 @@ $latest = array_chunk($latest, 4);
                     <!-- Brands Slider Navigation -->
                     <div class="brands_nav brands_prev"><i class="fa fa-chevron-left"></i></div>
                     <div class="brands_nav brands_next"><i class="fa fa-chevron-right"></i></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Recently Viewed -->
-
-<div class="viewed">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="viewed_title_container">
-                    <h3 class="viewed_title">Недавно просмотренные</h3>
-                    <div class="viewed_nav_container">
-                        <div class="viewed_nav viewed_prev"><i class="fa fa-chevron-left"></i></div>
-                        <div class="viewed_nav viewed_next"><i class="fa fa-chevron-right"></i></div>
-                    </div>
-                </div>
-
-                <div class="viewed_slider_container">
-
-                    <!-- Recently Viewed Slider -->
-
-                    <div class="owl-carousel owl-theme viewed_slider">
-
-                        <!-- Recently Viewed Item -->
-                        <div class="owl-item">
-                            <div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="/images/view_1.jpg" alt=""></div>
-                                <div class="viewed_content text-center">
-                                    <div class="viewed_price">$225<span>$300</span></div>
-                                    <div class="viewed_name"><a href="/#">Beoplay H7</a></div>
-                                </div>
-                                <ul class="item_marks">
-                                    <li class="item_mark item_discount">-25%</li>
-                                    <li class="item_mark item_new">new</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Recently Viewed Item -->
-                        <div class="owl-item">
-                            <div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="/images/view_2.jpg" alt=""></div>
-                                <div class="viewed_content text-center">
-                                    <div class="viewed_price">$379</div>
-                                    <div class="viewed_name"><a href="/#">LUNA Smartphone</a></div>
-                                </div>
-                                <ul class="item_marks">
-                                    <li class="item_mark item_discount">-25%</li>
-                                    <li class="item_mark item_new">new</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Recently Viewed Item -->
-                        <div class="owl-item">
-                            <div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="/images/view_3.jpg" alt=""></div>
-                                <div class="viewed_content text-center">
-                                    <div class="viewed_price">$225</div>
-                                    <div class="viewed_name"><a href="/#">Samsung J730F...</a></div>
-                                </div>
-                                <ul class="item_marks">
-                                    <li class="item_mark item_discount">-25%</li>
-                                    <li class="item_mark item_new">new</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Recently Viewed Item -->
-                        <div class="owl-item">
-                            <div class="viewed_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="/images/view_4.jpg" alt=""></div>
-                                <div class="viewed_content text-center">
-                                    <div class="viewed_price">$379</div>
-                                    <div class="viewed_name"><a href="/#">Huawei MediaPad...</a></div>
-                                </div>
-                                <ul class="item_marks">
-                                    <li class="item_mark item_discount">-25%</li>
-                                    <li class="item_mark item_new">new</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Recently Viewed Item -->
-                        <div class="owl-item">
-                            <div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="/images/view_5.jpg" alt=""></div>
-                                <div class="viewed_content text-center">
-                                    <div class="viewed_price">$225<span>$300</span></div>
-                                    <div class="viewed_name"><a href="/#">Sony PS4 Slim</a></div>
-                                </div>
-                                <ul class="item_marks">
-                                    <li class="item_mark item_discount">-25%</li>
-                                    <li class="item_mark item_new">new</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Recently Viewed Item -->
-                        <div class="owl-item">
-                            <div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="/images/view_6.jpg" alt=""></div>
-                                <div class="viewed_content text-center">
-                                    <div class="viewed_price">$375</div>
-                                    <div class="viewed_name"><a href="/#">Speedlink...</a></div>
-                                </div>
-                                <ul class="item_marks">
-                                    <li class="item_mark item_discount">-25%</li>
-                                    <li class="item_mark item_new">new</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
