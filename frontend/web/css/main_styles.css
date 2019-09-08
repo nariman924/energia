@@ -2393,7 +2393,7 @@ select option
 .arrivals_single_name_container
 {
 	width: 100%;
-	min-height: 100px;
+	min-height: 120px;
 }
 .arrivals_single_name
 {

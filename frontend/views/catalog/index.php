@@ -81,7 +81,7 @@ $models = array_chunk($models, 3);
                         <?php foreach ($models as $modelsRow) { ?>
                                 <div class="row">
                                     <?php foreach ($modelsRow as $singleModel) { ?>
-                                        <div class="col-lg-4 mb-3">
+                                        <div class="col-lg-4 mb-5">
                                             <div class="arrivals_single_image">
                                                 <img src="<?= Yii::$app->fileStorage->baseUrl . '/' . $singleModel->anons_pic ?>" alt="<?= $singleModel->name ?>">
                                             </div>
