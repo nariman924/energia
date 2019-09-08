@@ -7,26 +7,12 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 module.exports  = {
     entry: {
-        app: path.resolve(__dirname, './frontend/web/js/app.js'),
-        home: [
-            //path.resolve(__dirname, './frontend/web/css/style.less'),
-            // path.resolve(__dirname, './frontend/web/css/blog_responsive.css'),
-            // path.resolve(__dirname, './frontend/web/css/blog_single_responsive.css'),
-            // path.resolve(__dirname, './frontend/web/css/blog_single_styles.css'),
-            // path.resolve(__dirname, './frontend/web/css/blog_styles.css'),
-            // path.resolve(__dirname, './frontend/web/css/cart_responsive.css'),
-            // path.resolve(__dirname, './frontend/web/css/cart_styles.css'),
-            // path.resolve(__dirname, './frontend/web/css/contact_responsive.css'),
-            // path.resolve(__dirname, './frontend/web/css/contact_styles.css'),
-            // path.resolve(__dirname, './vendor/npm-asset/font-awesome/css/font-awesome.min.css'),
+        main_styles: [
+
+            path.resolve(__dirname, './frontend/web/bootstrap4/bootstrap.min.css'),
+            path.resolve(__dirname, './vendor/npm-asset/font-awesome/css/font-awesome.min.css'),
             path.resolve(__dirname, './frontend/web/css/main_styles.css'),
-            // path.resolve(__dirname, './frontend/web/css/product_responsive.css'),
-            // path.resolve(__dirname, './frontend/web/css/product_styles.css'),
-            // path.resolve(__dirname, './frontend/web/css/regular_responsive.css'),
-            // path.resolve(__dirname, './frontend/web/css/regular_styles.css'),
             path.resolve(__dirname, './frontend/web/css/responsive.css'),
-            // path.resolve(__dirname, './frontend/web/css/shop_responsive.css'),
-            // path.resolve(__dirname, './frontend/web/css/shop_styles.css'),
             path.resolve(__dirname, './frontend/web/plugins/OwlCarousel2-2.2.1/owl.carousel.css'),
             path.resolve(__dirname, './frontend/web/plugins/OwlCarousel2-2.2.1/owl.theme.default.css'),
             path.resolve(__dirname, './frontend/web/plugins/OwlCarousel2-2.2.1/animate.css'),

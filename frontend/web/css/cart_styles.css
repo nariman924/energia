@@ -1500,6 +1500,8 @@ select option
 
 .footer
 {
+	background: #fafafa;
+	border-top: solid 1px rgba(0,0,0,0.05);
 	padding-top: 52px;
 	padding-bottom: 40px;
 }

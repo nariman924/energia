@@ -1,14 +1,18 @@
 <?php
+
+use yii\helpers\Url;
+
+\frontend\assets\HomeAsset::register($this);
 /* @var $this yii\web\View */
 $this->title = Yii::$app->name;
-$this->registerCssFile("@web/bundle/home.css",
-    ['depends' => [\frontend\assets\FrontendAsset::class]], 'css-home');
 
 $latest = \common\models\EOffers::find()
     ->where(['available' => 1])
     ->orderBy(['shop_id' => SORT_DESC])
     ->limit(8)
     ->all();
+
+$latest = array_chunk($latest, 4);
 
 ?>
 <!-- Banner -->
@@ -91,44 +95,34 @@ $latest = \common\models\EOffers::find()
 
 <div class="new_arrivals">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
                 <h3 class="reviews_title">Новинки</h3>
                 <!-- Product Panel -->
-                <div class="product_panel panel active">
-                    <div class="arrivals_slider slider">
-                        <?php foreach ($latest as $latestItem) {
-                            /** @var $latestItem \common\models\EOffers */
-                            ?>
-
-                            <!-- Slider Item -->
-                            <div class="arrivals_slider_item">
-                                <div class="border_active"></div>
-                                <div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                    <div class="product_image d-flex flex-column align-items-center justify-content-center">
-                                        <img src="<?= Yii::$app->fileStorage->baseUrl . '/' . $latestItem->anons_pic ?>" alt="<?= $latestItem->name ?>">
-                                    </div>
-                                    <div class="product_content">
-                                        <div class="product_price"><?= $latestItem->price ?> р.</div>
-                                        <div class="product_name"><div><a href="/product.html"><?= $latestItem->name ?></a></div></div>
-                                        <div class="product_extras">
-
-                                            <button class="product_cart_button">В корзину</button>
-                                        </div>
-                                    </div>
-                                    <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                    <ul class="product_marks">
-                                        <li class="product_mark product_discount"></li>
-                                        <li class="product_mark product_new">new</li>
-                                    </ul>
+                    <?php foreach ($latest as $latestArr) { ?>
+                        <div class="row">
+                        <?php foreach ($latestArr as $latestItem) { ?>
+                            <div class="col-lg-3 mb-5">
+                                <div class="arrivals_single_image">
+                                    <img src="<?= Yii::$app->fileStorage->baseUrl . '/' . $latestItem->anons_pic ?>" alt="<?= $latestItem->name ?>">
                                 </div>
+                                <div class="arrivals_single_content">
+                                    <div class="arrivals_single_category"><a href="#">Smartphones</a></div>
+                                    <div style="min-height: 100px" class="arrivals_single_name_container clearfix">
+                                        <div class="arrivals_single_name">
+                                            <a href="<?= Url::toRoute(['catalog/product', 'id' => $latestItem->id]) ?>"><?= $latestItem->name ?></a>
+                                        </div>
+                                        <div class="arrivals_single_price text-right"><?= $latestItem->price ?> р.</div>
+                                    </div>
+                                    <div class="rating_r rating_r_4 arrivals_single_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                                    <form action="#"><button class="arrivals_single_button">В корзину</button></form>
+                                </div>
+                                <div class="arrivals_single_fav product_fav active"><i class="fas fa-heart"></i></div>
+                                <ul class="arrivals_single_marks product_marks">
+                                    <li class="arrivals_single_mark product_mark product_new">new</li>
+                                </ul>
                             </div>
                         <?php } ?>
-                    </div>
-                    <div class="arrivals_slider_dots_cover"></div>
-                </div>
-            </div>
-        </div>
+                        </div>
+                    <?php } ?>
     </div>
 </div>
 

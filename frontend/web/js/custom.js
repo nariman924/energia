@@ -43,7 +43,7 @@ $(document).ready(function()
 
 	setHeader();
 
-	//initCustomDropdown();
+	initCustomDropdown();
 	initPageMenu();
 	initDealsSlider();
 	initTabLines();
@@ -108,61 +108,48 @@ $(document).ready(function()
 
 	function initCustomDropdown()
 	{
-		if($('.custom_dropdown_placeholder').length && $('.custom_list').length)
-		{
+		if($('.custom_dropdown_placeholder').length && $('.custom_list').length) {
 			var placeholder = $('.custom_dropdown_placeholder');
 			var list = $('.custom_list');
-		}
 
-		placeholder.on('click', function (ev)
-		{
-			if(list.hasClass('active'))
-			{
-				list.removeClass('active');
-			}
-			else
-			{
-				list.addClass('active');
-			}
 
-			$(document).one('click', function closeForm(e)
-			{
-				if($(e.target).hasClass('clc'))
-				{
-					$(document).one('click', closeForm);
-				}
-				else
-				{
+			placeholder.on('click', function (ev) {
+				if (list.hasClass('active')) {
 					list.removeClass('active');
+				} else {
+					list.addClass('active');
+				}
+
+				$(document).one('click', function closeForm(e) {
+					if ($(e.target).hasClass('clc')) {
+						$(document).one('click', closeForm);
+					} else {
+						list.removeClass('active');
+					}
+				});
+
+			});
+
+			$('.custom_list a').on('click', function (ev) {
+				ev.preventDefault();
+				var index = $(this).parent().index();
+
+				placeholder.text($(this).text()).css('opacity', '1');
+
+				if (list.hasClass('active')) {
+					list.removeClass('active');
+				} else {
+					list.addClass('active');
 				}
 			});
 
-		});
 
-		$('.custom_list a').on('click', function (ev)
-		{
-			ev.preventDefault();
-			var index = $(this).parent().index();
+			$('select').on('change', function (e) {
+				placeholder.text(this.value);
 
-			placeholder.text( $(this).text() ).css('opacity', '1');
-
-			if(list.hasClass('active'))
-			{
-				list.removeClass('active');
-			}
-			else
-			{
-				list.addClass('active');
-			}
-		});
-
-
-		$('select').on('change', function (e)
-		{
-			placeholder.text(this.value);
-
-			$(this).animate({width: placeholder.width() + 'px' });
-		});
+				$(this).animate({width: placeholder.width() + 'px'});
+			});
+		}
 	}
 
 	/* 

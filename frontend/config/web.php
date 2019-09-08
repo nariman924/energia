@@ -13,25 +13,27 @@ $config = [
     ],
     'components' => [
         'assetManager' => [
-            'bundles' => [
-                'yii\bootstrap\BootstrapAsset' => [
-                    'css' => [
-                        Yii::getAlias('@frontendUrl') . '/bootstrap4/bootstrap.min.css'
+            'bundles' => array_merge([
+                [
+                    'yii\bootstrap\BootstrapAsset' => [
+                        'css' => [
+                            Yii::getAlias('@frontendUrl') . '/plugins/bootstrap4/bootstrap.min.css'
+                        ],
+                        'js' => [
+                            Yii::getAlias('@frontendUrl') . '/plugins/bootstrap4/popper.js',
+                            Yii::getAlias('@frontendUrl') . '/plugins/bootstrap4/bootstrap.min.js',
+                        ],
                     ],
-                    'js' => [
-                        Yii::getAlias('@frontendUrl') . '/bootstrap4/popper.js',
-                        Yii::getAlias('@frontendUrl') . '/bootstrap4/bootstrap.min.js',
+                    'yii\bootstrap\BootstrapPluginAsset' => [
+                        'js'=>[]
+                    ],
+                    'yii\web\JqueryAsset' => [
+                        'js'=>[
+                            Yii::getAlias('@frontendUrl') . '/plugins/jquery/jquery-3.3.1.min.js'
+                        ]
                     ],
                 ],
-                'yii\bootstrap\BootstrapPluginAsset' => [
-                    'js'=>[]
-                ],
-                'yii\web\JqueryAsset' => [
-                    'js'=>[
-                        Yii::getAlias('@frontendUrl') . '/js/jquery-3.3.1.min.js'
-                    ]
-                ],
-            ],
+            ], require __DIR__ . '/assets-compressed.php'),
         ],
         'authClientCollection' => [
             'class' => yii\authclient\Collection::class,

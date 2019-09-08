@@ -82,6 +82,14 @@ class EOffers extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getECategories()
+    {
+        return $this->hasMany(ECategories::className(), ['id' => 'category_id'])->via('eCategoriesOffers');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getEOfferParams()
     {
         return $this->hasMany(EOfferParams::className(), ['offer_id' => 'id']);
