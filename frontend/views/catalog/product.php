@@ -17,7 +17,9 @@ $this->title = Yii::$app->name;
             <div class="col-lg-2 order-lg-1 order-2">
                 <ul class="image_list">
                     <?php foreach ($model->getEOfferPictures()->limit(3)->all() as $picture)  { ?>
-                        <li data-image="<?= $picture->url ?>"><img src="<?= $picture->url ?>" alt="<?= $model->name ?>"></li>
+                        <li data-image="<?= Yii::$app->fileStorage->baseUrl . '/' . $picture->url ?>">
+                            <img src="<?= Yii::$app->fileStorage->baseUrl . '/' . $picture->url ?>" alt="<?= $model->name ?>">
+                        </li>
                     <?php } ?>
                 </ul>
             </div>
@@ -26,7 +28,9 @@ $this->title = Yii::$app->name;
             <div class="col-lg-5 order-lg-2 order-1">
                 <div class="image_selected">
                     <?php if ($picture) { ?>
-                    <li data-image="<?= $picture->url ?>"><img src="<?= $picture->url ?>" alt="<?= $model->name ?>"></li>
+                    <div data-image="<?= Yii::$app->fileStorage->baseUrl . '/' . $picture->url ?>">
+                        <img src="<?= Yii::$app->fileStorage->baseUrl . '/' . $picture->url ?>" alt="<?= $model->name ?>">
+                    </div>
                     <?php } ?>
                 </div>
             </div>
