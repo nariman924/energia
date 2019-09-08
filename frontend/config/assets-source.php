@@ -8,6 +8,7 @@ use frontend\assets\ContactAsset;
 use frontend\assets\FrontendAsset;
 use frontend\assets\BaseAsset;
 use frontend\assets\HomeAsset;
+use frontend\assets\PageAsset;
 use frontend\assets\ProductAsset;
 
 Yii::setAlias('@webroot', __DIR__ . '/../web');
@@ -31,6 +32,7 @@ return [
         HomeAsset::class,
         ProductAsset::class,
         ContactAsset::class,
+        PageAsset::class,
     ],
     'targets' => [
         'base' => [
@@ -71,6 +73,16 @@ return [
             'css' => 'contact-{hash}.css',
             'depends' => [
                 ContactAsset::class
+            ],
+        ],
+        'page' => [
+            'class' => 'yii\web\AssetBundle',
+            'basePath' => '@webroot/static',
+            'baseUrl' => '@web/static',
+            'js' => 'page-{hash}.js',
+            'css' => 'page-{hash}.css',
+            'depends' => [
+                PageAsset::class
             ],
         ],
     ],
