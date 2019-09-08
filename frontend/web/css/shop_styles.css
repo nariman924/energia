@@ -2420,6 +2420,8 @@ select option
 .arrivals_single_image
 {
 	width: 100%;
+	min-height: 200px;
+	text-align: center;
 }
 .arrivals_single_image img
 {
