@@ -7,9 +7,7 @@ use yii\helpers\Url;
 
 $this->title = Yii::$app->name;
 
-$models = \common\models\EOffers::find()->where(['available' => 1])->all();
-
-$models = array_chunk($models, 3);
+$models = \common\models\EOffers::find()->where(['available' => 1])->limit(20)->all();
 
 ?>
 <!-- Shop -->
@@ -78,20 +76,17 @@ $models = array_chunk($models, 3);
 
                 <div class="new_arrivals">
                     <div class="container">
-                        <?php foreach ($models as $modelsRow) { ?>
-                                <div class="row">
-                                    <?php foreach ($modelsRow as $singleModel) { ?>
-                                        <div class="col-lg-4 mb-5">
-                                            <div class="arrivals_single_image">
-                                                <img src="<?= Yii::$app->fileStorage->baseUrl . '/' . $singleModel->anons_pic ?>" alt="<?= $singleModel->name ?>">
-                                            </div>
-                                            <div class="arrivals_single_content">
-                                                <div class="arrivals_single_category"><a href="#">
-                                                        <?= $singleModel->getECategories()
-                                                            ->select('name')
-                                                            ->limit(1)
-                                                            ->scalar()
-                                                        ?></a></div>
+                        <?php foreach ($models as $singleModel) { ?>
+                            <div class="row arrivals_container">
+                                <div class="col-md-3">
+                                    <div class="arrivals_single_image">
+                                        <img src="<?= Yii::$app->fileStorage->baseUrl . '/' . $singleModel->anons_pic ?>" alt="<?= $singleModel->name ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="arrivals_single_content">
+                                        <div class="row">
+                                            <div class="col-md-9">
                                                 <div class="arrivals_single_name_container clearfix">
                                                     <div class="arrivals_single_name">
                                                         <a href="<?= Url::toRoute(['catalog/product', 'id' => $singleModel->id]) ?>">
@@ -99,27 +94,23 @@ $models = array_chunk($models, 3);
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="rating_r rating_r_5 arrivals_single_rating">
-                                                            <i></i><i></i><i></i><i></i><i></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="arrivals_single_price text-right"><?= $singleModel->price ?> р.</div>
-                                                    </div>
-                                                </div>
-                                                <div class="button d-block mt-2 text-center">
-                                                    <a href="<?= Url::toRoute(['catalog/product', 'id' => $singleModel->id]) ?>">Купить</a>
-                                                </div>
                                             </div>
-                                            <ul class="arrivals_single_marks product_marks">
-                                                <li class="arrivals_single_mark product_mark product_new">new</li>
-                                            </ul>
+                                            <div class="col-md-3">
+                                                <div class="arrivals_single_price"><?= $singleModel->price ?> р.</div>
+                                            </div>
                                         </div>
-                                    <?php } ?>
+                                        <div class="d-flex justify-content-between">
+                                            <div class="rating_r rating_r_5 arrivals_single_rating">
+                                                <i></i><i></i><i></i><i></i><i></i>
+                                            </div>
+                                            <div class="button text-center">
+                                                <a href="<?= Url::toRoute(['catalog/product', 'id' => $singleModel->id]) ?>">Купить</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            <?php } ?>
+                            </div>
+                        <?php } ?>
 
                         <!-- Shop Page Navigation -->
 

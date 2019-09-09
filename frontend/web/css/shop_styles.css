@@ -2420,7 +2420,6 @@ select option
 .arrivals_single_image
 {
 	width: 100%;
-	min-height: 200px;
 	text-align: center;
 }
 .arrivals_single_image img
@@ -2587,4 +2586,11 @@ select option
 .product_fav.active i
 {
 	color: red;
+}
+
+.arrivals_container {
+	padding: 15px 5px;
+	border: 1px solid #e5e5e5;
+	border-radius: 10px;
+	margin-bottom: 10px;
 }
