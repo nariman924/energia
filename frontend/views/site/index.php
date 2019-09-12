@@ -4,7 +4,7 @@ use yii\helpers\Url;
 
 \frontend\assets\HomeAsset::register($this);
 /* @var $this yii\web\View */
-$this->title = Yii::$app->name;
+$this->title = 'ИМ Энергия';
 
 $latest = \common\models\EOffers::find()
     ->where(['available' => 1])
@@ -93,55 +93,23 @@ $latest = array_chunk($latest, 4);
 
 <!-- Hot New Arrivals -->
 
-<div class="new_arrivals">
-    <div class="container">
-        <h3 class="reviews_title">Новинки</h3>
-        <!-- Product Panel -->
-            <?php foreach ($latest as $latestArr) { ?>
-                <div class="row">
-                <?php foreach ($latestArr as $latestItem) { ?>
-                    <div class="col-lg-3 mb-5">
-                        <div class="arrivals_single_image">
-                            <img src="<?= Yii::$app->fileStorage->baseUrl . '/' . $latestItem->anons_pic ?>" alt="<?= $latestItem->name ?>">
-                        </div>
-                        <div class="arrivals_single_content">
-                            <div class="arrivals_single_category"><a href="#">
-                                    <?= $latestItem->getECategories()
-                                        ->select('name')
-                                        ->limit(1)
-                                        ->scalar()
-                                    ?></a></div>
-                            <div class="arrivals_single_name_container clearfix">
-                                <div class="arrivals_single_name">
-                                    <a href="<?= Url::toRoute(['catalog/product', 'id' => $latestItem->id]) ?>">
-                                        <?= $latestItem->name ?>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="rating_r rating_r_5 arrivals_single_rating">
-                                        <i></i><i></i><i></i><i></i><i></i>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="arrivals_single_price text-right"><?= $latestItem->price ?> р.</div>
-                                </div>
-                            </div>
-                            <div class="button d-block mt-2 text-center">
-                                <a href="<?= Url::toRoute(['catalog/product', 'id' => $latestItem->id]) ?>">Подробнее..</a>
-                            </div>
-                        </div>
-                        <ul class="arrivals_single_marks product_marks">
-                            <li class="arrivals_single_mark product_mark product_new">new</li>
-                        </ul>
-                    </div>
-                <?php } ?>
+<div class="container mb-5">
+    <div class="row">
+    <?php foreach (\common\models\ECategories::find()->getList() as $item) { ?>
+        <!-- Char. Item -->
+        <div class="col-lg-3 col-md-6 char_col mb-3">
+            <div class="char_item d-flex flex-row align-items-center justify-content-start">
+                <div class="char_icon">
+                    <img src="/img/<?= $item['name'] ?>.png" alt="<?= $item['name'] ?>">
                 </div>
-            <?php } ?>
+                <div class="char_content">
+                    <div class="char_title"><a href="<?= Url::toRoute(['/catalog', 'filter[category]' => $item['id']]) ?>"><?= $item['name'] ?></a></div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
     </div>
 </div>
-
 <!-- Banner -->
 
 <div class="banner_2">
@@ -159,36 +127,9 @@ $latest = array_chunk($latest, 4);
                         <div class="row fill_height">
                             <div class="col-lg-4 col-md-6 fill_height">
                                 <div class="banner_2_content">
-                                    <div class="banner_2_category">Laptops</div>
-                                    <div class="banner_2_title">MacBook Air 13</div>
-                                    <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-                                    <div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                    <div class="button banner_2_button"><a href="/#">Explore</a></div>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-8 col-md-6 fill_height">
-                                <div class="banner_2_image_container">
-                                    <div class="banner_2_image"><img style="max-width:100%; max-height:100%; width:auto; height:auto" src="/images/device-4.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Banner 2 Slider Item -->
-            <div class="owl-item">
-                <div class="banner_2_item">
-                    <div class="container fill_height">
-                        <div class="row fill_height">
-                            <div class="col-lg-4 col-md-6 fill_height">
-                                <div class="banner_2_content">
-                                    <div class="banner_2_category">Laptops</div>
-                                    <div class="banner_2_title">MacBook Air 13</div>
-                                    <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-                                    <div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                    <div class="button banner_2_button"><a href="/#">Explore</a></div>
+                                    <div class="banner_2_title">Стабилизаторы напряжения</div>
+                                    <div class="banner_2_text">Стабилизаторы напряжения предназначены для надежной защиты подключенного электрооборудования от перепадов и искажений сетевого напряжения.</div>
+                                    <div class="rating_r rating_r_5 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
                                 </div>
                             </div>
                             <div class="col-lg-8 col-md-6 fill_height">
@@ -208,17 +149,38 @@ $latest = array_chunk($latest, 4);
                         <div class="row fill_height">
                             <div class="col-lg-4 col-md-6 fill_height">
                                 <div class="banner_2_content">
-                                    <div class="banner_2_category">Laptops</div>
-                                    <div class="banner_2_title">MacBook Air 13</div>
-                                    <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-                                    <div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                    <div class="button banner_2_button"><a href="/#">Explore</a></div>
+                                    <div class="banner_2_title">Источники бесперебойного питания (ИБП)</div>
+                                    <div class="banner_2_text">В нашем ИМ представлены однофазные и трехфазные источники бесперебойного питания мощностью от 550 ВА до 300 кВА. У нас можно купить не только ИБП, но и разнообразные аксессуары к ним.</div>
+                                    <div class="rating_r rating_r_5 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
                                 </div>
 
                             </div>
                             <div class="col-lg-8 col-md-6 fill_height">
                                 <div class="banner_2_image_container">
                                     <div class="banner_2_image"><img style="max-width:100%; max-height:100%; width:auto; height:auto" src="/images/device-6.png" alt=""></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner 2 Slider Item -->
+            <div class="owl-item">
+                <div class="banner_2_item">
+                    <div class="container fill_height">
+                        <div class="row fill_height">
+                            <div class="col-lg-4 col-md-6 fill_height">
+                                <div class="banner_2_content">
+                                    <div class="banner_2_title">ЛАТРы</div>
+                                    <div class="banner_2_text">Лабораторные автотрансформаторы Энергия предназначены для плавного регулирования в одно и трехфазных сетях переменного тока.</div>
+                                    <div class="rating_r rating_r_5 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-8 col-md-6 fill_height">
+                                <div class="banner_2_image_container">
+                                    <div class="banner_2_image"><img style="max-width:100%; max-height:100%; width:auto; height:auto" src="/images/device-4.png" alt=""></div>
                                 </div>
                             </div>
                         </div>

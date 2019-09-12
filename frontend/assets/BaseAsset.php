@@ -37,5 +37,6 @@ class BaseAsset extends AssetBundle
         '/plugins/OwlCarousel2-2.2.1/owl.carousel.js',
         '/plugins/slick-1.8.0/slick.js',
         '/plugins/easing/easing.js',
+        '/js/functions.js',
     ];
 }

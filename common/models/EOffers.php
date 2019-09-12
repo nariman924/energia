@@ -59,15 +59,15 @@ class EOffers extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'available' => Yii::t('app', 'Available'),
             'shop_url' => Yii::t('app', 'Shop Url'),
-            'price' => Yii::t('app', 'Price'),
-            'currency' => Yii::t('app', 'Currency'),
-            'qty' => Yii::t('app', 'Qty'),
+            'price' => 'Цена',
+            'currency' => 'Валюта',
+            'qty' => 'Количество',
             'vendor_code' => Yii::t('app', 'Vendor Code'),
             'shop_anons_pic' => Yii::t('app', 'Shop Anons Pic'),
             'anons_pic' => Yii::t('app', 'Anons Pic'),
-            'name' => Yii::t('app', 'Name'),
-            'vendor' => Yii::t('app', 'Vendor'),
-            'description' => Yii::t('app', 'Description'),
+            'name' => 'Название',
+            'vendor' => 'Производитель',
+            'description' => 'Описание',
         ];
     }
 

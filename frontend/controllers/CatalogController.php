@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: zein
- * Date: 7/4/14
- * Time: 2:01 PM
- */
 
 namespace frontend\controllers;
 
 use common\models\EOffers;
-use common\models\Page;
+use common\models\search\EOffersSearch;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -18,7 +12,10 @@ class CatalogController extends Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new EOffersSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $searchModel->formName());
+
+        return $this->render('index', compact('dataProvider', 'searchModel'));
     }
 
     public function actionProduct($id)

@@ -12,6 +12,16 @@ use common\models\EOffers;
  */
 class EOffersSearch extends EOffers
 {
+    public function formName()
+    {
+        return 'filter';
+    }
+
+    public function urlFilter($attr, $val)
+    {
+        return $this->formName() . '[' . $attr . ']=' . $val;
+    }
+
     /**
      * @inheritdoc
      */

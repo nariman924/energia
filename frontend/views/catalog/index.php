@@ -1,14 +1,35 @@
 <?php
 /* @var $this yii\web\View */
 
+use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\Pjax;
+use common\models\search\EOffersSearch;
 
 \frontend\assets\CatalogAsset::register($this);
 
 $this->title = Yii::$app->name;
 
-$models = \common\models\EOffers::find()->where(['available' => 1])->limit(20)->all();
+$this->registerJs("
+    $('.filter-category').click(function(event) {   
+        const filter = $(this).data('filter');
+        const val = $(this).data('val');
+        const url = setUrlParameter(window.location.href, filter, val);
+        
+        event.preventDefault();
+        $.pjax.reload({
+            container: '#catalogListView',
+            type       : 'GET',
+            url        : url,
+            data       : {},
+            push       : true,
+            replace    : false,
+            timeout    : 1000,
+        });
+    });
+");
 
+/** @var searchModel EOffersSearch */
 ?>
 <!-- Shop -->
 
@@ -20,17 +41,20 @@ $models = \common\models\EOffers::find()->where(['available' => 1])->limit(20)->
                 <!-- Shop Sidebar -->
                 <div class="shop_sidebar">
                     <div class="sidebar_section">
-                        <div class="sidebar_title">Categories</div>
+                        <div class="sidebar_title">Категории</div>
                         <ul class="sidebar_categories">
-                            <li><a href="#">Computers & Laptops</a></li>
-                            <li><a href="#">Cameras & Photos</a></li>
-                            <li><a href="#">Hardware</a></li>
-                            <li><a href="#">Smartphones & Tablets</a></li>
-                            <li><a href="#">TV & Audio</a></li>
-                            <li><a href="#">Gadgets</a></li>
-                            <li><a href="#">Car Electronics</a></li>
-                            <li><a href="#">Video Games & Consoles</a></li>
-                            <li><a href="#">Accessories</a></li>
+                            <?php foreach (\common\models\ECategories::find()->getList() as $item) { ?>
+                                <li>
+                                    <a data-filter="filter[category]"
+                                       data-val="<?= $item['id'] ?>"
+                                       class="filter-category"
+                                       title="<?= $item['name'] ?>"
+                                       href="#"
+                                    >
+                                        <?= $item['name'] ?>
+                                    </a>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
                     <div class="sidebar_section filter_by_section">
@@ -76,56 +100,22 @@ $models = \common\models\EOffers::find()->where(['available' => 1])->limit(20)->
 
                 <div class="new_arrivals">
                     <div class="container">
-                        <?php foreach ($models as $singleModel) { ?>
-                            <div class="row arrivals_container">
-                                <div class="col-md-3">
-                                    <div class="arrivals_single_image">
-                                        <img src="<?= Yii::$app->fileStorage->baseUrl . '/' . $singleModel->anons_pic ?>" alt="<?= $singleModel->name ?>">
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <div class="arrivals_single_content">
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <div class="arrivals_single_name_container clearfix">
-                                                    <div class="arrivals_single_name">
-                                                        <a href="<?= Url::toRoute(['catalog/product', 'id' => $singleModel->id]) ?>">
-                                                            <?= $singleModel->name ?>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="arrivals_single_price"><?= $singleModel->price ?> р.</div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                            <div class="rating_r rating_r_5 arrivals_single_rating">
-                                                <i></i><i></i><i></i><i></i><i></i>
-                                            </div>
-                                            <div class="button text-center">
-                                                <a href="<?= Url::toRoute(['catalog/product', 'id' => $singleModel->id]) ?>">Купить</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
-
-                        <!-- Shop Page Navigation -->
-
-                        <div class="shop_page_nav d-flex flex-row">
-                            <div class="page_prev d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-left"></i></div>
-                            <ul class="page_nav d-flex flex-row">
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">...</a></li>
-                                <li><a href="#">21</a></li>
-                            </ul>
-                            <div class="page_next d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-right"></i></div>
-                        </div>
-
+                        <?php Pjax::begin([
+                            'id' => 'catalogListView'
+                        ]) ?>
+                        <?= \yii\widgets\ListView::widget([
+                            'dataProvider' => $dataProvider,
+                            'itemView' => '_item',
+                            'layout' => "{sorter}\n{items}\n{summary}\n{pager}",
+                            'sorter' => [
+                                'attributes' => ['price'],
+                            ],
+                            'pager' => [
+                                'class' => \frontend\widgets\CustomPager::class,
+                                'hideOnSinglePage' => true,
+                            ],
+                        ])?>
+                        <?php Pjax::end() ?>
                     </div>
                 </div>
 
@@ -133,3 +123,5 @@ $models = \common\models\EOffers::find()->where(['available' => 1])->limit(20)->
         </div>
     </div>
 </div>
+<script>
+</script>

@@ -2174,7 +2174,7 @@ select option
 .banner_2_dots
 {
 	position: absolute;
-	bottom: 40px;
+	bottom: 20px;
 	left: 45%;
 	z-index: 1000000;
 }
