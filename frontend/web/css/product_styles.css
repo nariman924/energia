@@ -105,10 +105,7 @@ p a:hover::after
 {
 	opacity: 0.2;
 }
-::selection
-{
-	
-}
+
 p::selection
 {
 	
@@ -1256,7 +1253,7 @@ select option
 .single_product
 {
 	padding-top: 110px;
-	padding-bottom: 140px;
+	padding-bottom: 20px;
 }
 .image_list li
 {
@@ -1356,7 +1353,7 @@ select option
 }
 .order_info
 {
-	margin-top: 53px;
+	margin-top: 40px;
 }
 .product_quantity
 {
@@ -1549,12 +1546,12 @@ select option
 	display: inline-block;
 	font-size: 24px;
 	font-weight: 500;
-	margin-top: 75px;
+	margin-top: 30px;
 	clear: left;
 }
 .button_container
 {
-	margin-top: 43px;
+	margin-top: 30px;
 }
 .cart_button
 {

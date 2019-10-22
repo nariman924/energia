@@ -102,10 +102,7 @@ p a:hover::after
 {
 	opacity: 0.2;
 }
-::selection
-{
-	
-}
+
 p::selection
 {
 	

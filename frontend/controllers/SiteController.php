@@ -69,14 +69,14 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($model->contact(Yii::$app->params['adminEmail'])) {
                 Yii::$app->getSession()->setFlash('alert', [
-                    'body' => Yii::t('frontend', 'Thank you for contacting us. We will respond to you as soon as possible.'),
+                    'body' => 'Спасибо за Ваше сообщение, мы ответим вам в ближайшее время',
                     'options' => ['class' => 'alert-success']
                 ]);
                 return $this->refresh();
             }
 
             Yii::$app->getSession()->setFlash('alert', [
-                'body' => \Yii::t('frontend', 'There was an error sending email.'),
+                'body' => 'Произошла ошибка. Повторите попытку пожже',
                 'options' => ['class' => 'alert-danger']
             ]);
         }

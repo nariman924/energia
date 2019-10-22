@@ -2,27 +2,27 @@
 use common\models\ECategories;
 use yii\helpers\Url;
 
-
-$topCat = ECategories::find()->getList();
+$this->beginContent('@frontend/views/layouts/base.php');
+$topCat = \common\models\ECategories::find()->getList();
 
 function drawMenuItems($category)
 {
-    $childs = ECategories::find()->getList($category['shop_id']);
+    $childrends = ECategories::findChilds($category['shop_id']);
 
-    if ($childs) {
-        echo '<li class="hassubs"><a href="/#">' . $category['name'] .
-            '<i class="fa fa-chevron-right ml-auto"></i></a><ul style="width: inherit!important;">';
+    if ($childrends) {
+        echo '<li class="hassubs"><a href="' . Url::toRoute(['/catalog', 'filter[category]' => $category['shop_id']]) .
+            '">' . $category['name'] . '<i class="fa fa-chevron-right ml-auto"></i></a><ul style="width: inherit!important;">';
 
-        foreach ($childs as $item) {
+        foreach ($childrends as $item) {
             drawMenuItems($item);
         }
         echo '</ul></li>';
     } else {
-        echo '<li><a href="/#">' . $category['name'] . '<i class="fa fa-chevron-right ml-auto"></i></a></li>';
+        echo '<li><a href="' . Url::toRoute(['/catalog', 'filter[category]' => $category['shop_id']]) . '">' .
+            $category['name'] . '<i class="fa fa-chevron-right ml-auto"></i></a></li>';
     }
 }
-
-$this->beginContent('@frontend/views/layouts/base.php'); ?>
+?>
 
 <div class="super_container">
 
@@ -46,13 +46,13 @@ $this->beginContent('@frontend/views/layouts/base.php'); ?>
                                 <?= Yii::$app->keyStorage->get('email'); ?>
                             </a>
                         </div>
-                        <div class="top_bar_content ml-auto">
-                            <div class="top_bar_user">
-                                <div class="user_icon"><img src="/images/user.svg" alt=""></div>
-                                <div><a href="<?= Url::toRoute('/user/sign-in/signup') ?>">Регистрация</a></div>
-                                <div><a href="<?= Url::toRoute('/user/sign-in/login') ?>">Вход</a></div>
-                            </div>
-                        </div>
+<!--                        <div class="top_bar_content ml-auto">-->
+<!--                            <div class="top_bar_user">-->
+<!--                                <div class="user_icon"><img src="/images/user.svg" alt=""></div>-->
+<!--                                <div><a href="--><?//= Url::toRoute('/user/sign-in/signup') ?><!--">Регистрация</a></div>-->
+<!--                                <div><a href="--><?//= Url::toRoute('/user/sign-in/login') ?><!--">Вход</a></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
@@ -73,8 +73,8 @@ $this->beginContent('@frontend/views/layouts/base.php'); ?>
                         <div class="header_search">
                             <div class="header_search_content">
                                 <div class="header_search_form_container">
-                                    <form action="#" class="header_search_form clearfix">
-                                        <input type="search" required="required" class="header_search_input" placeholder="Поиск...">
+                                    <form action="<?= Url::toRoute('/catalog') ?>" class="header_search_form clearfix search-form">
+                                        <input type="search" name="filter[name]" required="required" class="search-input header_search_input" placeholder="Поиск...">
                                         <button type="submit" class="header_search_button trans_300" value="Submit"><img src="/images/search.png" alt=""></button>
                                     </form>
                                 </div>
@@ -99,11 +99,11 @@ $this->beginContent('@frontend/views/layouts/base.php'); ?>
                                 <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                     <div class="cart_icon">
                                         <img src="/images/cart.png" alt="">
-                                        <div class="cart_count"><span>10</span></div>
+                                        <div class="cart_count"><span><?= Yii::$app->cart->getTotalCount() ?></span></div>
                                     </div>
                                     <div class="cart_content">
                                         <div class="cart_text"><a href="<?= Url::toRoute('/cart/') ?>">Корзина</a></div>
-                                        <div class="cart_price">$85</div>
+                                        <div class="cart_price"><?= Yii::$app->cart->getTotalCost(); ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +146,7 @@ $this->beginContent('@frontend/views/layouts/base.php'); ?>
                                     <li><a href="<?= Url::toRoute('/page/delivery') ?>">Доставка<i class="fa fa-chevron-down"></i></a></li>
                                     <li><a href="<?= Url::toRoute('/page/warranty') ?>">Гарантия<i class="fa fa-chevron-down"></i></a></li>
                                     <li><a href="<?= Url::toRoute('/page/about') ?>">О нас<i class="fa fa-chevron-down"></i></a></li>
-                                    <li><a href="<?= Url::toRoute('/article') ?>">Статьи<i class="fa fa-chevron-down"></i></a></li>
+<!--                                    <li><a href="--><?//= Url::toRoute('/article') ?><!--">Статьи<i class="fa fa-chevron-down"></i></a></li>-->
                                     <li><a href="<?= Url::toRoute('/site/contact') ?>">Контакты<i class="fa fa-chevron-down"></i></a></li>
                                 </ul>
                             </div>

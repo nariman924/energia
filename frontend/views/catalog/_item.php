@@ -29,8 +29,8 @@ use yii\helpers\Url;
                 <div class="rating_r rating_r_5 arrivals_single_rating">
                     <i></i><i></i><i></i><i></i><i></i>
                 </div>
-                <div class="button text-center">
-                    <a href="<?= Url::toRoute(['catalog/product', 'id' => $model->id]) ?>">Купить</a>
+                <div>
+                    <a class="btn btn-primary" href="<?= Url::toRoute(['catalog/product', 'id' => $model->id]) ?>">Подробнее</a>
                 </div>
             </div>
         </div>

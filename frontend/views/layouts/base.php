@@ -5,6 +5,7 @@
 use yii\helpers\Url;
 
 $this->beginContent('@frontend/views/layouts/_clear.php');
+$topCat = \common\models\ECategories::find()->getList();
 
 ?>
 <div class="wrap">
@@ -35,7 +36,7 @@ $this->beginContent('@frontend/views/layouts/_clear.php');
                             <li><a href="<?= Url::toRoute('/page/delivery') ?>">Доставка</a></li>
                             <li><a href="<?= Url::toRoute('/page/warranty') ?>">Гарантия</a></li>
                             <li><a href="<?= Url::toRoute('/page/about') ?>">О нас</a></li>
-                            <li><a href="<?= Url::toRoute('/article') ?>">Статьи</a></li>
+<!--                            <li><a href="--><?//= Url::toRoute('/article') ?><!--">Статьи</a></li>-->
                             <li><a href="<?= Url::toRoute('/site/contact') ?>">Контакты</a></li>
                         </ul>
                     </div>
@@ -44,7 +45,9 @@ $this->beginContent('@frontend/views/layouts/_clear.php');
                     <div class="footer_column">
                         <div class="footer_title">Категории</div>
                         <ul class="footer_list">
-                            <?php foreach (\common\models\ECategories::find()->getList() as $item) { ?>
+                            <?php
+
+                            foreach ($topCat as $item) { ?>
                                 <li>
                                     <a data-toggle="tooltip" title="<?= $item['name'] ?>" href="/#">
                                         <?= $item['name'] ?>

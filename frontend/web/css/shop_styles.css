@@ -108,10 +108,7 @@ p a:hover::after
 {
 	opacity: 0.2;
 }
-::selection
-{
-	
-}
+
 p::selection
 {
 	
@@ -1668,7 +1665,7 @@ select option
 }
 .sidebar_categories
 {
-	margin-top: 37px;
+	margin-top: 20px;
 }
 .sidebar_categories li
 {
@@ -1686,10 +1683,6 @@ select option
 .sidebar_categories li a:hover
 {
 	color: #0e8ce4;
-}
-.filter_by_section
-{
-	margin-top: 45px;
 }
 .filter_price
 {
@@ -1711,7 +1704,7 @@ select option
 {
 	font-size: 14px;
 	font-weight: 500;
-	margin-top: 25px;
+	margin-top: 20px;
 }
 .filter_price p input
 {
@@ -2593,4 +2586,28 @@ select option
 	border: 1px solid #e5e5e5;
 	border-radius: 10px;
 	margin-bottom: 10px;
+}
+
+.sorter li {
+	margin-bottom: 10px;
+}
+
+.sorter li a.desc::after {
+	font-family: 'FontAwesome';
+	content: "\f161";
+	font-style: normal;
+	font-size: 19px;
+	margin-left: 4px;
+}
+
+.sorter li a.asc::after {
+	font-family: 'FontAwesome';
+	content: "\f160";
+	font-style: normal;
+	font-size: 19px;
+	margin-left: 4px;
+}
+
+.sidebar_section {
+	margin-bottom: 35px;
 }

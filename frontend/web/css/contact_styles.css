@@ -1679,3 +1679,11 @@ select option
 {
 	margin-right: 0px;
 }
+.has-error .form-control
+{
+	border-color: #d83838;
+}
+.help-block {
+	color: #d83838;
+	padding-top: 5px;
+}

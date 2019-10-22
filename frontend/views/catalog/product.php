@@ -2,10 +2,17 @@
 \frontend\assets\ProductAsset::register($this);
 /* @var $this yii\web\View */
 
+use common\models\EOfferParams;
+use yii\bootstrap\Tabs;
 use yii\helpers\Url;
 
-$this->title = Yii::$app->name;
+$this->title = $model->name;
 /** @var $model \common\models\EOffers */
+
+$params = EOfferParams::find()
+    ->where(['offer_id' => $model->id])
+    ->andWhere("name NOT IN('brutto-demissions', 'brutto-weight')")
+    ->all();
 ?>
 <!-- Single Product -->
 
@@ -49,46 +56,43 @@ $this->title = Yii::$app->name;
                     <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
                     <div class="product_text"><p><?= $model->description ?></p></div>
                     <div class="order_info d-flex flex-row">
-                        <form action="#">
+                        <form method="post" action="<?= Url::toRoute(['cart/add']) ?>">
                             <div class="clearfix" style="z-index: 1000;">
-
                                 <!-- Product Quantity -->
                                 <div class="product_quantity clearfix">
-                                    <span>Quantity: </span>
-                                    <input id="quantity_input" type="text" pattern="[0-9]*" value="1">
+                                    <span>Количество: </span>
+                                    <input type="hidden" name="offerId" value="<?= $model->id ?>">
+                                    <input type="hidden" name="<?= Yii::$app->request->csrfParam ?>" value="<?= Yii::$app->request->csrfToken ?>">
+                                    <input type="text" id="quantity_input" name="quantity" pattern="[0-9]*" value="1">
                                     <div class="quantity_buttons">
                                         <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up"></i></div>
                                         <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down"></i></div>
                                     </div>
                                 </div>
-
-                                <!-- Product Color -->
-                                <ul class="product_color">
-                                    <li>
-                                        <span>Color: </span>
-                                        <div class="color_mark_container"><div id="selected_color" class="color_mark"></div></div>
-                                        <div class="color_dropdown_button"><i class="fa fa-chevron-down"></i></div>
-
-                                        <ul class="color_list">
-                                            <li><div class="color_mark" style="background: #999999;"></div></li>
-                                            <li><div class="color_mark" style="background: #b19c83;"></div></li>
-                                            <li><div class="color_mark" style="background: #000000;"></div></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-
                             </div>
 
                             <div class="product_price"><?= $model->price ?> р.</div>
                             <div class="button_container">
-                                <button type="button" class="button cart_button">В корзину</button>
+                                <button type="submit" class="button cart_button">В корзину</button>
                             </div>
-
                         </form>
                     </div>
                 </div>
             </div>
 
+        </div>
+        <div class="row">
+            <h3 class="mt-5 mb-3">Характеристики</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-condensed">
+                    <?php foreach ($params as $param) { ?>
+                        <tr>
+                            <th><?= $param->name ?></th>
+                            <td><?= $param->value ?></td>
+                        </tr>
+                    <?php } ?>
+                </table>
+            </div>
         </div>
     </div>
 </div>

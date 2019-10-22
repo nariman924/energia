@@ -64,4 +64,18 @@ class ECategories extends \yii\db\ActiveRecord
     {
         return new \common\models\query\ECategoriesQuery(get_called_class());
     }
+
+    public static function findChilds($parentId)
+    {
+        $categories = Yii::$app->cache->getOrSet('categories_array', function () {
+            return ECategories::find()->select(['name', 'id', 'shop_id', 'shop_parent_id'])->asArray()->all();
+        });
+        $result = [];
+        foreach ($categories as $category) {
+            if ((int)$category['shop_parent_id'] === (int)$parentId) {
+                $result[] = $category;
+            }
+        }
+        return $result;
+    }
 }

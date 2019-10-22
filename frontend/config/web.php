@@ -33,7 +33,7 @@ $config = [
                         ]
                     ],
                 ],
-            ], require __DIR__ . '/assets-compressed.php'),
+            ], YII_ENV_DEV ? [] : require(__DIR__ . '/assets-compressed.php')),
         ],
         'authClientCollection' => [
             'class' => yii\authclient\Collection::class,
@@ -79,7 +79,37 @@ $config = [
             'loginUrl' => ['/user/sign-in/login'],
             'enableAutoLogin' => true,
             'as afterLogin' => common\behaviors\LoginTimestampBehavior::class
-        ]
+        ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+            'cachePath' => '@frontend/runtime/cache'
+        ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure a transport
+            // for the mailer to send real emails.
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => env('SMTP_HOST'),
+                'port' => env('SMTP_PORT'),
+                'username' => env('SMTP_USER'),
+                'password' => env('SMTP_PASS'),
+            ],
+        ],
+        'cart' => [
+            'class' => \devanych\cart\Cart::class,
+            'storageClass' => 'devanych\cart\storage\SessionStorage',
+            'calculatorClass' => 'devanych\cart\calculators\SimpleCalculator',
+            'params' => [
+                'key' => 'cart',
+                'expire' => 604800,
+                'productClass' => \common\models\EOffers::class,
+                'productFieldId' => 'id',
+                'productFieldPrice' => 'price',
+            ],
+        ],
     ]
 ];
 

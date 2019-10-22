@@ -2,16 +2,23 @@
 
 namespace common\models\search;
 
+use common\models\ECategories;
+use common\models\ECategoriesOffers;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\EOffers;
+use yii\db\Query;
 
 /**
  * EOffersSearch represents the model behind the search form about `common\models\EOffers`.
  */
 class EOffersSearch extends EOffers
 {
+    public $category;
+    public $priceFrom;
+    public $priceTo;
+
     public function formName()
     {
         return 'filter';
@@ -29,8 +36,10 @@ class EOffersSearch extends EOffers
     {
         return [
             [['id', 'available', 'qty'], 'integer'],
-            [['shop_url', 'currency', 'vendor_code', 'shop_anons_pic', 'anons_pic', 'name', 'vendor', 'description'], 'safe'],
-            [['price'], 'number'],
+            [['shop_url', 'currency', 'vendor_code', 'shop_anons_pic',
+                'anons_pic', 'name', 'vendor', 'description', 'category'
+            ], 'safe'],
+            [['price', 'priceFrom', 'priceTo'], 'number'],
         ];
     }
 
@@ -52,7 +61,7 @@ class EOffersSearch extends EOffers
      */
     public function search($params)
     {
-        $query = EOffers::find();
+        $query = EOffers::find()->alias('off');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -69,6 +78,19 @@ class EOffersSearch extends EOffers
             'qty' => $this->qty,
         ]);
 
+        if ($this->category) {
+            $subQuery = (new Query())->select(['off.id'])
+                ->from(['off' => EOffers::tableName()])
+                ->leftJoin(['catoff' => ECategoriesOffers::tableName()], 'catoff.offer_id = off.id')
+                ->leftJoin(['cat' => ECategories::tableName()], 'cat.id = catoff.category_id')
+                ->andWhere(['OR', ['cat.shop_id' => $this->category], ['cat.shop_parent_id' => $this->category]])
+                ->column();
+
+            $subQuery =  $subQuery ?: 0;
+
+            $query->andFilterWhere(['off.id' => $subQuery]);
+        }
+
         $query->andFilterWhere(['like', 'shop_url', $this->shop_url])
             ->andFilterWhere(['like', 'currency', $this->currency])
             ->andFilterWhere(['like', 'vendor_code', $this->vendor_code])
@@ -76,7 +98,9 @@ class EOffersSearch extends EOffers
             ->andFilterWhere(['like', 'anons_pic', $this->anons_pic])
             ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'vendor', $this->vendor])
-            ->andFilterWhere(['like', 'description', $this->description]);
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['>=', 'price', $this->priceFrom])
+            ->andFilterWhere(['<=', 'price', $this->priceTo]);
 
         return $dataProvider;
     }

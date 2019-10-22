@@ -13,6 +13,7 @@ $latest = \common\models\EOffers::find()
     ->all();
 
 $latest = array_chunk($latest, 4);
+$topCat = \common\models\ECategories::find()->getList();
 
 ?>
 <!-- Banner -->
@@ -95,7 +96,7 @@ $latest = array_chunk($latest, 4);
 
 <div class="container mb-5">
     <div class="row">
-    <?php foreach (\common\models\ECategories::find()->getList() as $item) { ?>
+    <?php foreach ($topCat as $item) { ?>
         <!-- Char. Item -->
         <div class="col-lg-3 col-md-6 char_col mb-3">
             <div class="char_item d-flex flex-row align-items-center justify-content-start">
@@ -103,7 +104,7 @@ $latest = array_chunk($latest, 4);
                     <img src="/img/<?= $item['name'] ?>.png" alt="<?= $item['name'] ?>">
                 </div>
                 <div class="char_content">
-                    <div class="char_title"><a href="<?= Url::toRoute(['/catalog', 'filter[category]' => $item['id']]) ?>"><?= $item['name'] ?></a></div>
+                    <div class="char_title"><a href="<?= Url::toRoute(['/catalog', 'filter[category]' => $item['shop_id']]) ?>"><?= $item['name'] ?></a></div>
                 </div>
             </div>
         </div>

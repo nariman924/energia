@@ -39,6 +39,7 @@ $(document).ready(function()
 	//initIsotope();
 	//initPriceSlider();
 	initFavs();
+	initFilter();
 
 	$(window).on('resize', function()
 	{
@@ -402,5 +403,34 @@ $(document).ready(function()
 				fn.target.classList.toggle('active');
 			});
 		}
+	}
+
+	function initFilter() {
+		$('#price-filter-form button[type="reset"]').click(function(event) {
+			event.preventDefault();
+			$('#price-filter-form input').val(null);
+		});
+		$('.filter-category').click(function(event) {
+			const filter = $(this).data('filter');
+			const val = $(this).data('val');
+			const url = setUrlParameter(window.location.href, filter, val);
+
+			event.preventDefault();
+			$.pjax.reload({
+				container: '#catalogListView',
+				url      : url,
+			});
+		});
+
+		$('#search-form').on('submit', function(event) {
+			event.preventDefault();
+			const input = $(this).find('.search-input');
+			const url = setUrlParameter(window.location.href, input.attr('name'), input.val());
+
+			$.pjax.reload({
+				container: '#catalogListView',
+				url      : url,
+			});
+		});
 	}
 });

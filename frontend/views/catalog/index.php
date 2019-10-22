@@ -1,33 +1,14 @@
 <?php
 /* @var $this yii\web\View */
 
+use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\widgets\Pjax;
-use common\models\search\EOffersSearch;
 
 \frontend\assets\CatalogAsset::register($this);
 
-$this->title = Yii::$app->name;
-
-$this->registerJs("
-    $('.filter-category').click(function(event) {   
-        const filter = $(this).data('filter');
-        const val = $(this).data('val');
-        const url = setUrlParameter(window.location.href, filter, val);
-        
-        event.preventDefault();
-        $.pjax.reload({
-            container: '#catalogListView',
-            type       : 'GET',
-            url        : url,
-            data       : {},
-            push       : true,
-            replace    : false,
-            timeout    : 1000,
-        });
-    });
-");
+$this->title = 'Каталог товаров';
+$topCat = \common\models\ECategories::find()->getList();
 
 /** @var searchModel EOffersSearch */
 ?>
@@ -40,13 +21,68 @@ $this->registerJs("
 
                 <!-- Shop Sidebar -->
                 <div class="shop_sidebar">
+                    <div class="sidebar_section filter_by_section">
+                        <div class="sidebar_title">Поиск</div>
+                        <?php $form = ActiveForm::begin([
+                            'action' => '',
+                            'id' => 'search-form',
+                            'method' => 'GET',
+                            'options' => ['class' => 'form-horizontal'],
+                            'fieldConfig' => [
+                                'options' => [
+                                    'tag' => false,
+                                ],
+                            ],
+                        ]) ?>
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <?= $form->field($searchModel, 'name')->label(false)
+                                    ->textInput(['class' => 'form-control search-input', 'placeholder' => 'поиск']) ?>
+                            </div>
+                            <div class="col-sm-3">
+                                <?= Html::submitButton('<i class="fa fa-search"></i>', ['class' => 'btn btn-primary pull-right']) ?>
+                            </div>
+                        </div>
+
+                        <?php ActiveForm::end() ?>
+<!--                        <div class="sidebar_title">Фильтры</div>-->
+                        <div class="sidebar_subtitle">Цена</div>
+                        <?php $form = ActiveForm::begin([
+                            'action' => '',
+                            'id' => 'price-filter-form',
+                            'method' => 'GET',
+                            'options' => ['class' => 'form-horizontal'],
+                            'fieldConfig' => [
+                                'options' => [
+                                    'tag' => false,
+                                ],
+                            ],
+                        ]) ?>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <?= $form->field($searchModel, 'priceFrom')->label(false)
+                                    ->textInput(['class' => 'form-control', 'placeholder' => 'от'])?>
+                            </div>
+                            <div class="col-sm-6">
+                                <?= $form->field($searchModel, 'priceTo')->label(false)
+                                    ->textInput(['class' => 'form-control', 'placeholder' => 'от'])?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <?= Html::resetButton('Очистить', ['class' => 'btn btn-default pull-left']) ?>
+                                <?= Html::submitButton('Применить', ['class' => 'btn btn-primary pull-right']) ?>
+                            </div>
+                        </div>
+                        <?php ActiveForm::end() ?>
+                    </div>
                     <div class="sidebar_section">
                         <div class="sidebar_title">Категории</div>
                         <ul class="sidebar_categories">
-                            <?php foreach (\common\models\ECategories::find()->getList() as $item) { ?>
+                            <?php foreach ($topCat as $item) { ?>
                                 <li>
                                     <a data-filter="filter[category]"
-                                       data-val="<?= $item['id'] ?>"
+                                       data-val="<?= $item['shop_id'] ?>"
                                        class="filter-category"
                                        title="<?= $item['name'] ?>"
                                        href="#"
@@ -55,39 +91,6 @@ $this->registerJs("
                                     </a>
                                 </li>
                             <?php } ?>
-                        </ul>
-                    </div>
-                    <div class="sidebar_section filter_by_section">
-                        <div class="sidebar_title">Filter By</div>
-                        <div class="sidebar_subtitle">Price</div>
-                        <div class="filter_price">
-                            <div id="slider-range" class="slider_range"></div>
-                            <p>Range: </p>
-                            <p><input type="text" id="amount" class="amount" readonly style="border:0; font-weight:bold;"></p>
-                        </div>
-                    </div>
-                    <div class="sidebar_section">
-                        <div class="sidebar_subtitle color_subtitle">Color</div>
-                        <ul class="colors_list">
-                            <li class="color"><a href="#" style="background: #b19c83;"></a></li>
-                            <li class="color"><a href="#" style="background: #000000;"></a></li>
-                            <li class="color"><a href="#" style="background: #999999;"></a></li>
-                            <li class="color"><a href="#" style="background: #0e8ce4;"></a></li>
-                            <li class="color"><a href="#" style="background: #df3b3b;"></a></li>
-                            <li class="color"><a href="#" style="background: #ffffff; border: solid 1px #e1e1e1;"></a></li>
-                        </ul>
-                    </div>
-                    <div class="sidebar_section">
-                        <div class="sidebar_subtitle brands_subtitle">Brands</div>
-                        <ul class="brands_list">
-                            <li class="brand"><a href="#">Apple</a></li>
-                            <li class="brand"><a href="#">Beoplay</a></li>
-                            <li class="brand"><a href="#">Google</a></li>
-                            <li class="brand"><a href="#">Meizu</a></li>
-                            <li class="brand"><a href="#">OnePlus</a></li>
-                            <li class="brand"><a href="#">Samsung</a></li>
-                            <li class="brand"><a href="#">Sony</a></li>
-                            <li class="brand"><a href="#">Xiaomi</a></li>
                         </ul>
                     </div>
                 </div>
@@ -101,7 +104,8 @@ $this->registerJs("
                 <div class="new_arrivals">
                     <div class="container">
                         <?php Pjax::begin([
-                            'id' => 'catalogListView'
+                            'id' => 'catalogListView',
+                            'timeout' => 300
                         ]) ?>
                         <?= \yii\widgets\ListView::widget([
                             'dataProvider' => $dataProvider,

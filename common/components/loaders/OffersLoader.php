@@ -27,7 +27,7 @@ class OffersLoader extends BaseLoader
             $anonsPic = $this->saveImage((string)$offerItem->anonsPic);
             
             $offerModel->setAttributes([
-                'available' => $attr['@attributes']['available'] === 'true',
+                'available' => $attr['@attributes']['available'] === 'true' ? 1 : 0,
                 'shop_id' => $shopId,
                 'shop_url' => (string)$offerItem->url,
                 'price' => (float)$offerItem->price,
